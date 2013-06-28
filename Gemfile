@@ -6,7 +6,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'jquery-rails'
+gem 'jquery-rails', '2.3.0'
 gem 'bootstrap-sass'
 gem 'cancan'
 gem 'devise'
@@ -15,6 +15,8 @@ gem 'pg'
 gem 'rolify'
 gem 'sendgrid'
 gem 'simple_form'
+gem 'byebug'
+gem 'activeadmin'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
