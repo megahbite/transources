@@ -15,17 +15,24 @@ gem 'pg'
 gem 'rolify'
 gem 'sendgrid'
 gem 'simple_form'
-gem 'byebug'
 gem 'activeadmin'
+gem 'country_select'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
   gem 'html2haml'
   gem 'quiet_assets'
+  gem 'awesome_print'
+  gem 'wirble'
+  gem 'hirb'
 end
 group :development, :test do
+  gem 'byebug'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'faker'
+  gem 'shoulda'
 end
 group :test do
   gem 'capybara'
