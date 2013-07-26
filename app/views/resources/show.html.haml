@@ -1,0 +1,22 @@
+.row-fluid
+  .span6
+    %h1
+      = @resource.title
+    
+    %p.lead= @resource.description
+
+    %p
+      %strong Categories:
+      = @resource.categories.map { |c| c.name }.join(', ')
+
+    %p!= @resource.join_address("<br>")
+
+    .map{data: {lat: @resource.lat, long: @resource.long}}
+
+    %a.btn.btn-mini{href: url_for(edit_resource_path(@resource))}
+      %i.icon-edit
+      Edit
+
+  .span6
+
+    

@@ -1,0 +1,19 @@
+= simple_form_for(@resource) do |f|
+  = f.error_notification
+
+  .form-inputs.row-fluid
+    .span4
+      = f.input :title
+      = f.input :description, input_html: { rows: 5, cols: 40 }
+      = f.association :categories
+    .span4
+      = f.input :address_line_1
+      = f.input :address_line_2
+      = f.input :town
+      = f.input :country
+      = f.input :lat, as: :hidden
+      = f.input :long, as: :hidden
+
+
+  .form-actions.row-fluid
+    = f.button :submit, onclick: 'return GetLatLong();'
