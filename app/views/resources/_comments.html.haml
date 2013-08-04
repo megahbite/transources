@@ -1,0 +1,30 @@
+- if @resource.comments.empty?
+  .no-comments
+    %p No comments to display
+- else
+  .comments
+    - @resource.comments.each do |c|
+      .comment
+        .body
+          = c.text
+        .info
+          %small
+            - if c.user
+              = c.user.name
+            - else
+              Anonymous
+            &middot;
+            = c.created_at
+
+
+= simple_form_for([@resource, Comment.new()]) do |f|
+  = f.error_notification
+
+  .form_inputs.row_fluid
+    .span12
+      = f.input_field :text, style: "width: 100%;", rows: 5
+      = f.input_field :anonymous, as: :boolean, inline_label: "Post as anonymous?"
+
+  .form-actions.row-fluid
+    .span12
+      = f.button :submit

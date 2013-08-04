@@ -20,43 +20,34 @@ require 'spec_helper'
 
 describe ResourcesController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Resource. As you add validations to Resource, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) { {  } }
-
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ResourcesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all resources as @resources" do
-      resource = Resource.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:resources).should eq([resource])
-    end
-  end
+  let(:resource) { FactoryGirl.create(:resource) }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:valid_attributes) { resource.attributes.except("id", "created_at", "updated_at", "lat", "long") }
 
   describe "GET show" do
     it "assigns the requested resource as @resource" do
-      resource = Resource.create! valid_attributes
-      get :show, {:id => resource.to_param}, valid_session
+      get :show, { id: resource.to_param }
       assigns(:resource).should eq(resource)
     end
   end
 
   describe "GET new" do
     it "assigns a new resource as @resource" do
-      get :new, {}, valid_session
+      sign_in user
+      get :new
       assigns(:resource).should be_a_new(Resource)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested resource as @resource" do
-      resource = Resource.create! valid_attributes
-      get :edit, {:id => resource.to_param}, valid_session
+      sign_in user
+      get :edit, { id: resource.to_param }
       assigns(:resource).should eq(resource)
     end
   end
@@ -64,19 +55,20 @@ describe ResourcesController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Resource" do
+        sign_in user
         expect {
-          post :create, {:resource => valid_attributes}, valid_session
-        }.to change(Resource, :count).by(1)
+          post :create, {:resource => valid_attributes}
+        }.to change(Resource, :count).by(2)
       end
 
       it "assigns a newly created resource as @resource" do
-        post :create, {:resource => valid_attributes}, valid_session
+        post :create, {:resource => valid_attributes}
         assigns(:resource).should be_a(Resource)
         assigns(:resource).should be_persisted
       end
 
       it "redirects to the created resource" do
-        post :create, {:resource => valid_attributes}, valid_session
+        post :create, {:resource => valid_attributes}
         response.should redirect_to(Resource.last)
       end
     end
@@ -85,14 +77,14 @@ describe ResourcesController do
       it "assigns a newly created but unsaved resource as @resource" do
         # Trigger the behavior that occurs when invalid params are submitted
         Resource.any_instance.stub(:save).and_return(false)
-        post :create, {:resource => {  }}, valid_session
+        post :create, {:resource => {  }}
         assigns(:resource).should be_a_new(Resource)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Resource.any_instance.stub(:save).and_return(false)
-        post :create, {:resource => {  }}, valid_session
+        post :create, {:resource => {  }}
         response.should render_template("new")
       end
     end

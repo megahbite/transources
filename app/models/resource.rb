@@ -3,6 +3,8 @@ class Resource < ActiveRecord::Base
 
   has_and_belongs_to_many :categories
 
+  has_many :comments, order: "created_at DESC"
+
   validates :title, presence: true
   validates :description, presence: true
   validates :address_line_1, presence: true

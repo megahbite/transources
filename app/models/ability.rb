@@ -35,6 +35,7 @@ class Ability
         can :manage, :all
     elsif user.has_role?(:user)
         can :manage, Resource
+        can :create, Comment
     else
         can :read, Resource
     end
