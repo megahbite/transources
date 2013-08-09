@@ -78,7 +78,8 @@ Transources::Application.configure do
     password: ENV["SENDGRID_PASSWORD"]
   }
 
-
+  config.eager_load = true
+  config.assets.js_compressor = :uglifier
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)

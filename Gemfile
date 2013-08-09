@@ -1,21 +1,31 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
-gem 'rails', '3.2.13'
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
-gem 'jquery-rails', '2.3.0'
-gem 'bootstrap-sass'
+gem 'rails', '4.0.0'
+
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.0.3'
+
+gem 'turbolinks'
+
+gem 'protected_attributes'
+gem 'rails-observers'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
+
+gem 'jquery-rails'
+gem 'bootstrap-sass', '~> 2.3.2.1'
 gem 'cancan'
 gem 'devise'
 gem 'haml-rails'
 gem 'pg'
-gem 'rolify'
+gem 'rolify', "~> 3.3.0.rc4"
 gem 'sendgrid'
 gem 'simple_form'
-gem 'activeadmin'
+gem 'activeadmin',         github: 'gregbell/active_admin', branch: 'rails4'
+gem 'ransack',             github: 'ernie/ransack',         branch: 'rails-4'
+gem 'inherited_resources', github: 'josevalim/inherited_resources'
+gem 'formtastic',          github: 'justinfrench/formtastic'
 gem 'country_select'
 
 group :development do
