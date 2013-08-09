@@ -1,7 +1,6 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name
-
+  include Authority::Abilities
   has_and_belongs_to_many :resources
 
-  validates :name, presence: true
+  validates_presence_of :name
 end

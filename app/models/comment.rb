@@ -1,10 +1,12 @@
 class Comment < ActiveRecord::Base
-  attr_accessor :anonymous
-  attr_accessible :resource_id, :score, :text, :user_id
+  include Authority::Abilities
 
+  self.authorizer_name = "CommentAuthorizer"
+  
+  attr_accessor :anonymous
   belongs_to :resource
 
   belongs_to :user
 
-  validates :resource_id, presence: true
+  validates_presence_of :resource_id
 end

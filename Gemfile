@@ -8,14 +8,9 @@ gem 'uglifier', '>= 1.0.3'
 
 gem 'turbolinks'
 
-gem 'protected_attributes'
-gem 'rails-observers'
-gem 'actionpack-page_caching'
-gem 'actionpack-action_caching'
-
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 2.3.2.1'
-gem 'cancan'
+gem 'authority'
 gem 'devise'
 gem 'haml-rails'
 gem 'pg'
@@ -38,6 +33,7 @@ group :development do
   gem 'hirb'
 end
 group :development, :test do
+  gem 'nyan-cat-formatter'
   gem 'byebug'
   gem 'factory_girl_rails'
   gem 'rspec-rails'

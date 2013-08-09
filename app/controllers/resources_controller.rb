@@ -1,4 +1,6 @@
 class ResourcesController < ApplicationController
+  authorize_actions_for Resource, except: :show
+
   # GET /resources/1
   # GET /resources/1.json
   def show
@@ -29,7 +31,7 @@ class ResourcesController < ApplicationController
   # POST /resources
   # POST /resources.json
   def create
-    @resource = Resource.new(params[:resource])
+    @resource = Resource.new(resource_params)
 
     respond_to do |format|
       if @resource.save
@@ -48,7 +50,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
 
     respond_to do |format|
-      if @resource.update_attributes(params[:resource])
+      if @resource.update_attributes(resource_params)
         format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
         format.json { head :no_content }
       else
@@ -68,5 +70,11 @@ class ResourcesController < ApplicationController
       format.html { redirect_to resources_url }
       format.json { head :no_content }
     end
+  end
+
+private
+
+  def resource_params
+    params.require(:resource).permit(:title, :description, :address_line_1, :address_line_2, :town, :country)
   end
 end

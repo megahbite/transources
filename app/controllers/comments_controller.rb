@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
+  authorize_actions_for Comment
+
   def create
-    debugger
-    @comment = Comment.new(params[:comment].except(:anonymous))
+    @comment = Comment.new(comment_params)
     @resource = Resource.find(params[:resource_id])
 
     @comment.resource = @resource
@@ -22,5 +23,19 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+
+    @comment.destroy
+
+    respond_to do |format|
+      format.html { redirect_to :root }
+      format.json { head :no_content }
+    end
   end
+
+private
+
+  def comment_params
+    params.require(:comment).permit(:user_id, :text, :score, :resource_id).except(:anonymous)
+  end  
 end

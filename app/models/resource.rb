@@ -1,15 +1,13 @@
 class Resource < ActiveRecord::Base
-  attr_accessible :address_line_1, :address_line_2, :country, :category_ids, :description, :title, :town, :lat, :long
+  include Authority::Abilities
+
+  self.authorizer_name = "ResourceAuthorizer"
 
   has_and_belongs_to_many :categories
 
   has_many :comments, -> { order(created_at: :desc) }
 
-  validates :title, presence: true
-  validates :description, presence: true
-  validates :address_line_1, presence: true
-  validates :town, presence: true
-  validates :country, presence: true
+  validates_presence_of :title, :description, :address_line_1, :town, :country
 
   def join_address(join_string)
     [address_line_1, address_line_2, town, country].join(join_string)

@@ -27,7 +27,7 @@ describe ResourcesController do
 
   let(:resource) { FactoryGirl.create(:resource) }
   let(:user) { FactoryGirl.create(:user) }
-  let(:valid_attributes) { resource.attributes.except("id", "created_at", "updated_at", "lat", "long") }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:resource) }
 
   describe "GET show" do
     it "assigns the requested resource as @resource" do
@@ -53,12 +53,12 @@ describe ResourcesController do
   end
 
   describe "POST create" do
+    before(:each) { sign_in user }
     describe "with valid params" do
       it "creates a new Resource" do
-        sign_in user
         expect {
           post :create, {:resource => valid_attributes}
-        }.to change(Resource, :count).by(2)
+        }.to change(Resource, :count).by(1)
       end
 
       it "assigns a newly created resource as @resource" do
@@ -77,20 +77,21 @@ describe ResourcesController do
       it "assigns a newly created but unsaved resource as @resource" do
         # Trigger the behavior that occurs when invalid params are submitted
         Resource.any_instance.stub(:save).and_return(false)
-        post :create, {:resource => {  }}
+        post :create, {:resource => { title: "foo" }}
         assigns(:resource).should be_a_new(Resource)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Resource.any_instance.stub(:save).and_return(false)
-        post :create, {:resource => {  }}
+        post :create, {:resource => { title: "foo" }}
         response.should render_template("new")
       end
     end
   end
 
-  describe "PUT update" do
+  describe "PATCH update" do
+    before(:each) { sign_in user }
     describe "with valid params" do
       it "updates the requested resource" do
         resource = Resource.create! valid_attributes
@@ -98,19 +99,19 @@ describe ResourcesController do
         # specifies that the Resource created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Resource.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
-        put :update, {:id => resource.to_param, :resource => { "these" => "params" }}, valid_session
+        Resource.any_instance.should_receive(:update_attributes).with({})
+        patch :update, {:id => resource.to_param, :resource => { "these" => "params" }}, valid_session
       end
 
       it "assigns the requested resource as @resource" do
         resource = Resource.create! valid_attributes
-        put :update, {:id => resource.to_param, :resource => valid_attributes}, valid_session
+        patch :update, {:id => resource.to_param, :resource => valid_attributes}, valid_session
         assigns(:resource).should eq(resource)
       end
 
       it "redirects to the resource" do
         resource = Resource.create! valid_attributes
-        put :update, {:id => resource.to_param, :resource => valid_attributes}, valid_session
+        patch :update, {:id => resource.to_param, :resource => valid_attributes}, valid_session
         response.should redirect_to(resource)
       end
     end
@@ -120,7 +121,7 @@ describe ResourcesController do
         resource = Resource.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Resource.any_instance.stub(:save).and_return(false)
-        put :update, {:id => resource.to_param, :resource => {  }}, valid_session
+        patch :update, {:id => resource.to_param, :resource => { title: "" }}, valid_session
         assigns(:resource).should eq(resource)
       end
 
@@ -128,13 +129,14 @@ describe ResourcesController do
         resource = Resource.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Resource.any_instance.stub(:save).and_return(false)
-        put :update, {:id => resource.to_param, :resource => {  }}, valid_session
+        patch :update, {:id => resource.to_param, :resource => { title: "" }}, valid_session
         response.should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
+    before(:each) { sign_in user }
     it "destroys the requested resource" do
       resource = Resource.create! valid_attributes
       expect {
