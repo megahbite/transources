@@ -8,5 +8,7 @@ FactoryGirl.define do
     address_line_2 { Faker::Address.secondary_address }
     town { Faker::Address.city }
     country { Faker::Address.country }
+    lat (-41.280562)
+    long 174.7749028
   end
 end

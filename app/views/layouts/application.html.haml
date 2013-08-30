@@ -6,6 +6,7 @@
     %meta{:content => content_for?(:description) ? yield(:description) : "Transources", :name => "description"}
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
+    = javascript_include_tag controller_name if asset_path(controller_name)
     = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GMAPS_API_KEY']}&sensor=false"
     = csrf_meta_tags
     = yield(:head)

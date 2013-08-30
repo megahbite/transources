@@ -1,4 +1,4 @@
-= simple_form_for(@resource) do |f|
+= simple_form_for(@resource, html: { class: 'edit_resource' }) do |f|
   = f.error_notification
 
   .form-inputs.row-fluid
@@ -16,4 +16,4 @@
 
 
   .form-actions.row-fluid
-    = f.button :submit, onclick: 'return GetLatLong();'
+    = f.button :submit, onclick: 'return GetLatLong();', class: "btn btn-primary"

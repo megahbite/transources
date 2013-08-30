@@ -63,6 +63,8 @@ GEM
       activesupport (= 4.0.0)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
+    activerecord-postgis-adapter (0.6.5)
+      rgeo-activerecord (~> 0.5.0)
     activesupport (4.0.0)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
@@ -199,6 +201,11 @@ GEM
     rake (10.1.0)
     responders (1.0.0.rc)
       railties (>= 3.2, < 5)
+    rgeo (0.3.20)
+    rgeo-activerecord (0.5.0)
+      activerecord (>= 3.0.3)
+      arel (>= 2.0.6)
+      rgeo (>= 0.3.20)
     rolify (3.3.0.rc4)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -266,6 +273,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  activerecord-postgis-adapter
   authority
   awesome_print
   better_errors
