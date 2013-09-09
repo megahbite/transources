@@ -9,7 +9,7 @@ gem 'uglifier', '>= 1.0.3'
 gem 'turbolinks'
 
 gem 'jquery-rails'
-gem 'bootstrap-sass', '~> 2.3.2.1'
+gem 'bootstrap-sass',      github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 gem 'authority'
 gem 'devise'
 gem 'haml-rails'

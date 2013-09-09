@@ -1,5 +1,5 @@
-.row-fluid
-  .span6
+.row
+  .col-md-6.col-xs-12
     %h1
       = @resource.title
     
@@ -17,6 +17,6 @@
       %i.icon-edit
       Edit
 
-  .span6
+  .col-md-6.col-xs-12
     -# Comments/Reviews
     = render "comments", locals: {resource: @resource}

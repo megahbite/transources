@@ -2,8 +2,8 @@
   %button.close{type: "button", data: {dismiss: "alert"}}
     &times;
 
-.row-fluid
-  .span12
+.row
+  .col-xs-12
     %h3 
       Search
     = text_field_tag 'location', nil, placeholder: "Enter an address..."
@@ -14,9 +14,9 @@
     %br
     = button_tag "Search", class: "btn btn-primary js-location-search", type: "button", data: { "loading-text" => "Searching..." }
 
-.row-fluid
-  .span6
+.row
+  .col-md-6.col-xs-12
     .results-map
-  .span6
+  .col-md-6.col-xs-12
     %ul.results-list.unstyled
   

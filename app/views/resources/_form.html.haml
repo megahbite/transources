@@ -1,12 +1,12 @@
 = simple_form_for(@resource, html: { class: 'edit_resource' }) do |f|
   = f.error_notification
 
-  .form-inputs.row-fluid
-    .span4
+  .form-inputs.row
+    .col-md-6.col-xs-12
       = f.input :title
       = f.input :description, input_html: { rows: 5, cols: 40 }
       = f.association :categories
-    .span4
+    .col-md-6.col-xs-12
       = f.input :address_line_1
       = f.input :address_line_2
       = f.input :town
@@ -15,5 +15,5 @@
       = f.input :long, as: :hidden
 
 
-  .form-actions.row-fluid
+  .form-actions.row
     = f.button :submit, onclick: 'return GetLatLong();', class: "btn btn-primary"
