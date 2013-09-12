@@ -1,10 +1,11 @@
+%h4 Comments
 - if @resource.comments.empty?
   .no-comments
     %p No comments to display
 - else
   .comments
     - @resource.comments.each do |c|
-      .comment
+      .comment.well
         .body
           = c.text
         .info
@@ -17,14 +18,14 @@
             = c.created_at
 
 
-= simple_form_for([@resource, Comment.new()]) do |f|
+= simple_form_for([@resource, Comment.new()], html: { class: "form-horizontal" }) do |f|
   = f.error_notification
 
-  .form_inputs.row_fluid
-    .span12
+  .form-group
+    .col-xs-12
       = f.input_field :text, style: "width: 100%;", rows: 5
-      = f.input_field :anonymous, as: :boolean, inline_label: "Post as anonymous?"
-
-  .form-actions.row-fluid
-    .span12
-      = f.button :submit, class: "btn"
+  .checkbox
+    %label
+      = f.check_box :anonymous
+      Post as anonymous?
+  = f.button :submit, class: "btn btn-default"

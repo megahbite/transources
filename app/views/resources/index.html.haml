@@ -6,13 +6,15 @@
   .col-xs-12
     %h3 
       Search
-    = text_field_tag 'location', nil, placeholder: "Enter an address..."
-    .input-prepend.input-append
-      %span.add-on Within
-      = number_field_tag 'radius', 20, min: 1, style: "width: 3em;"
-      %span.add-on km
-    %br
-    = button_tag "Search", class: "btn btn-primary js-location-search", type: "button", data: { "loading-text" => "Searching..." }
+    .row
+      .col-xs-3
+        = text_field_tag 'location', nil, placeholder: "Enter an address...", class: "form-control"
+      .col-xs-3.input-group
+        %span.input-group-addon Within
+        = number_field_tag 'radius', 20, min: 1, class: "form-control"
+        %span.input-group-addon km
+      .col-xs-3
+        = button_tag "Search", class: "btn btn-primary js-location-search", type: "button", data: { "loading-text" => "Searching..." }
 
 .row
   .col-md-6.col-xs-12

@@ -5,8 +5,6 @@ class ResourcesController < ApplicationController
 
   end
 
-  # GET /resources/1
-  # GET /resources/1.json
   def show
     @resource = Resource.find(params[:id])
 
@@ -16,8 +14,6 @@ class ResourcesController < ApplicationController
     end
   end
 
-  # GET /resources/new
-  # GET /resources/new.json
   def new
     @resource = Resource.new
 
@@ -27,13 +23,10 @@ class ResourcesController < ApplicationController
     end
   end
 
-  # GET /resources/1/edit
   def edit
     @resource = Resource.find(params[:id])
   end
 
-  # POST /resources
-  # POST /resources.json
   def create
     @resource = Resource.new(resource_params)
 
@@ -50,12 +43,10 @@ class ResourcesController < ApplicationController
     end
   end
 
-  # PUT /resources/1
-  # PUT /resources/1.json
   def update
     @resource = Resource.find(params[:id])
     p = resource_params 
-    p.merge({"longlat" => "POINT(#{p[:long]} #{p[:lat]})"}) if p.has_key? :long and p.has_key? :lat
+    p.merge!({"longlat" => "POINT(#{p[:long]} #{p[:lat]})"}) if p.has_key? :long and p.has_key? :lat
     respond_to do |format|
       if @resource.update_attributes(p)
         format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
@@ -67,8 +58,6 @@ class ResourcesController < ApplicationController
     end
   end
 
-  # DELETE /resources/1
-  # DELETE /resources/1.json
   def destroy
     @resource = Resource.find(params[:id])
     @resource.destroy

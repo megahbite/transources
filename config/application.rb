@@ -79,5 +79,7 @@ module Transources
         ENV[key.to_s] = value
       end if File.exists?(env_file)
     end
+ 
+    config.assets.precompile += %w(resources.js)
   end
 end

@@ -4,18 +4,21 @@
       = @resource.title
     
     %p.lead= @resource.description
+    .row
+      .col-xs-6
+        %p
+          %strong Categories:
+          = @resource.categories.map { |c| c.name }.join(', ')
 
-    %p
-      %strong Categories:
-      = @resource.categories.map { |c| c.name }.join(', ')
-
-    %p!= @resource.join_address("<br>")
+        %p!= @resource.join_address("<br>")
+      .col-xs-6
+        %a.btn.btn-default.btn-xs{href: url_for(edit_resource_path(@resource))}
+          %i.glyphicon.glyphicon-edit
+          Edit
 
     .map{data: {lat: @resource.lat, long: @resource.long}}
 
-    %a.btn.btn-mini{href: url_for(edit_resource_path(@resource))}
-      %i.icon-edit
-      Edit
+    
 
   .col-md-6.col-xs-12
     -# Comments/Reviews
