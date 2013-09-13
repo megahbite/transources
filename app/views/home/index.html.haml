@@ -1,2 +1,10 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+%h1 Welcome to Transources
+%p 
+  We currently have
+  %strong= Resource.count
+  resources from across New Zealand
+
+%p
+  = link_to "You can search for something that can help you", resources_path
+  or
+  = link_to "add to our database of resources", new_resource_path

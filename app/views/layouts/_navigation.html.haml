@@ -1,18 +1,33 @@
 .navbar-header
+  %button.navbar-toggle{ type: "button", data: { toggle: "collapse", target: ".navbar-1-collapse" } }
+    %span.sr-only Toggle navigation
+    %span.icon-bar
+    %span.icon-bar
+    %span.icon-bar
   = link_to "Transources", root_path, :class => 'navbar-brand'
-%ul.nav.navbar-nav
-  - if user_signed_in?
-    %li
-      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-  - else
-    %li
-      = link_to 'Login', new_user_session_path
-  - if user_signed_in?
-    %li
-      = link_to 'Edit account', edit_user_registration_path
-    - if current_user.superuser?
+.collapse.navbar-collapse.navbar-1-collapse
+  %ul.nav.navbar-nav
+    - if user_signed_in?
       %li
-        = link_to 'Admin', admin_root_path
-  - else
-    %li
-      = link_to 'Sign up', new_user_registration_path
+        = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+    - else
+      %li
+        = link_to 'Login', new_user_session_path
+    - if user_signed_in?
+      %li
+        = link_to 'Edit account', edit_user_registration_path
+      - if current_user.superuser?
+        %li
+          = link_to 'Admin', admin_root_path
+    - else
+      %li
+        = link_to 'Sign up', new_user_registration_path
+    %li.dropdown
+      %a.dropdown-toggle{href: "#", data: { toggle: "dropdown"}}
+        Resources
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          = link_to 'Search', resources_path
+        %li
+          = link_to 'New', new_resource_path

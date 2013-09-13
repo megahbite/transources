@@ -42,10 +42,10 @@ $(->
 
     marker = new google.maps.Marker(markerOptions)
 
-  $('body').on('click', '#alert-template .close', (e) ->
+  $(document).on('click', '#alert-template .close', (e) ->
     $('#alert-template span').remove)
 
-  $('body').on('click', '.js-location-search', (e) ->
+  $(document).on('click', '.js-location-search', (e) ->
     $(e.target).button('loading')
     geocoder = new google.maps.Geocoder
 
@@ -62,13 +62,19 @@ $(->
 
       radius = $('#radius').val()
 
-      $.getJSON("/resources/search", "lat=#{location.lat()}&lng=#{location.lng()}&radius=#{radius}", (data) ->
+      params = "lat=#{location.lat()}&lng=#{location.lng()}&radius=#{radius}"
+
+      categories = $('#categories').val()
+      if categories
+        for c in categories
+          params += "&categories[]=#{c}"
+
+      $.getJSON("/resources/search", params, (data) ->
         $(e.target).button('reset')
         ShowSearchResults([location.lat(), location.lng()], $('#radius').val(), data))
   )
 
   ShowAlert = (message) ->
-    debugger
     $('#alert-template span').remove()
     $('#alert-template button').after("<span>#{message}</span>")
     $('#alert-template').fadeIn('slow')

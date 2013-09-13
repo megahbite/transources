@@ -1,8 +1,9 @@
 class ResourcesController < ApplicationController
-  authorize_actions_for Resource, except: [:show, :search]
+  before_filter :authenticate_user!, except: [:index, :show, :search]
+  authorize_actions_for Resource, except: [:index, :show, :search]
 
   def index
-
+    @categories = Category.all
   end
 
   def show
@@ -73,6 +74,8 @@ class ResourcesController < ApplicationController
     if params[:lat] and params[:lng]
       @resources = @resources.where("ST_DWithin(longlat, ST_GeographyFromText('SRID=4326;POINT(#{params[:lng]} #{params[:lat]})'), #{params[:radius].to_i * 1000})")
     end
+
+    @resources = @resources.joins(:categories).where('categories.id in (?)', params[:categories]) unless params[:categories].blank?
 
     render json: @resources.to_json(include: :categories), status: :ok
   end
