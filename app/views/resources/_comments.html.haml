@@ -16,6 +16,10 @@
               Anonymous
             &middot;
             = c.created_at
+        - if current_user.can_delete?(c)
+          .actions
+            = form_tag resource_comment_path(@resource, c), method: :delete do
+              = submit_tag "Delete", class: "btn btn-link btn-xs"
 
 
 = simple_form_for([@resource, Comment.new()], html: { class: "form-horizontal" }) do |f|
@@ -28,4 +32,4 @@
     %label
       = f.check_box :anonymous
       Post as anonymous?
-  = f.button :submit, class: "btn btn-default"
+  = f.button :submit, class: "btn btn-primary"

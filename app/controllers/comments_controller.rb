@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :authenticate_user!
   authorize_actions_for Comment
 
   def create
@@ -24,11 +25,12 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    @resource = Resource.find(params[:resource_id])
 
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to :root }
+      format.html { redirect_to @resource }
       format.json { head :no_content }
     end
   end

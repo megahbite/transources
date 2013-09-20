@@ -6,4 +6,8 @@ class CommentAuthorizer < ApplicationAuthorizer
   def self.destroyable_by?(user)
     user.has_role?(:admin)
   end
+
+  def destroyable_by?(user)
+    resource.user == user
+  end
 end
