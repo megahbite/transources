@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 
-gem 'sass-rails',   '~> 4.0.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails',   '~> 4.0.1'
+gem 'coffee-rails', '~> 4.0.1'
 gem 'uglifier', '>= 1.0.3'
 
 gem 'turbolinks'
@@ -17,7 +17,7 @@ gem 'pg'
 gem 'rolify', "~> 3.3.0.rc4"
 gem 'sendgrid'
 gem 'simple_form',         github: 'plataformatec/simple_form' 
-gem 'activeadmin',         github: 'gregbell/active_admin', branch: 'rails4'
+gem 'activeadmin',         github: 'gregbell/active_admin'
 gem 'ransack'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'formtastic',          github: 'justinfrench/formtastic'
