@@ -42,7 +42,7 @@ describe CommentsController do
     it "destroys the requested comment" do
       comment
       expect {
-        delete :destroy, { resource_id: 1, :id => comment.to_param}
+        delete :destroy, { resource_id: comment.resource.to_param, :id => comment.to_param}
       }.to change(Comment, :count).by(-1)
     end
   end

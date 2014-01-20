@@ -31,7 +31,6 @@ group :development do
   gem 'hirb'
 end
 group :development, :test do
-  gem 'nyan-cat-formatter'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'faker'
