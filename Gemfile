@@ -32,7 +32,6 @@ group :development do
 end
 group :development, :test do
   gem 'nyan-cat-formatter'
-  gem 'byebug'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'faker'
