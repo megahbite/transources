@@ -81,5 +81,7 @@ module Transources
     end
  
     config.assets.precompile += %w(resources.js)
+
+    config.i18n.enforce_available_locales = false
   end
 end

@@ -40,7 +40,7 @@ describe CommentsController do
   describe "DELETE destroy" do
     before(:each) { sign_in admin_user }
     it "destroys the requested comment" do
-      comment = Comment.create! valid_attributes
+      comment
       expect {
         delete :destroy, { resource_id: 1, :id => comment.to_param}
       }.to change(Comment, :count).by(-1)
