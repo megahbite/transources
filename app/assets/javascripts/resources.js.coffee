@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(->
+  #Search form
+
   $('.js-location-search').button()
 
   window.GetLatLong = ->
@@ -136,11 +138,18 @@ $(->
       category_links = []
 
       for c in r.categories
-        category_links.push("<a href='/categories/#{c.id}'>#{c.name}</a>")
+        category_links.push("<a href='/resources/tag/#{c.name}'>#{c.name}</a>")
 
       $(".results-list").append(
         "<li>
           <p><a href='/resources/#{r.id}'><strong>#{r.title}</strong></a><br>
           <small>Categories: #{category_links.join(', ')}</small></p>
         </li>")
+
+  # Edit/Create Resource
+
+  $('#resource_category_list').removeClass('form-control').select2 {
+    tags: [],
+    tokenSeparators: [",", " "]
+  }
 )

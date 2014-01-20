@@ -2,7 +2,10 @@ class ResourcesController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show, :search]
 
   def index
-    @categories = Category.all
+    @categories = ActsAsTaggableOn::Tag
+    .includes(:taggings)
+    .where(taggings: { context: 'categories' })
+    .distinct
   end
 
   def show
@@ -72,20 +75,25 @@ class ResourcesController < ApplicationController
   end
 
   def search
+    #byebug
     @resources = Resource.all
     if params[:lat] and params[:lng]
       @resources = @resources.where("ST_DWithin(longlat, ST_GeographyFromText('SRID=4326;POINT(#{params[:lng]} #{params[:lat]})'), #{params[:radius].to_i * 1000})")
     end
 
-    @resources = @resources.joins(:categories).where('categories.id in (?)', params[:categories]) unless params[:categories].blank?
+    @resources = @resources.tagged_with(params[:categories], any: true) unless params[:categories].blank?
 
     render json: @resources.to_json(include: :categories), status: :ok
+  end
+
+  def tag
+    @resources = Resource.tagged_with(params[:tag_id])
   end
 
 private
 
   def resource_params
-    params.require(:resource).permit(:title, :description, :address_line_1, :address_line_2, :town, :country, :lat, :long, category_ids: [])
+    params.require(:resource).permit(:title, :description, :address_line_1, :address_line_2, :town, :country, :lat, :long, :category_list)
   end
 
 

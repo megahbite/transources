@@ -17,6 +17,8 @@ gem 'sendgrid'
 gem 'simple_form'
 gem 'country_select'
 
+gem 'acts-as-taggable-on'
+
 gem 'activerecord-postgis-adapter'
 
 gem 'select2-rails'

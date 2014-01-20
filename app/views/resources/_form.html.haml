@@ -1,3 +1,5 @@
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GMAPS_API_KEY']}&sensor=false"
+
 = simple_form_for(@resource, html: { class: 'edit_resource' }) do |f|
   = f.error_notification
 
@@ -5,7 +7,7 @@
     .col-md-6.col-xs-12
       = f.input :title
       = f.input :description, input_html: { rows: 5, cols: 40 }
-      = f.association :categories
+      = f.input :category_list
     .col-md-6.col-xs-12
       = f.input :address_line_1
       = f.input :address_line_2

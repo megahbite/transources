@@ -136,7 +136,7 @@ $(->
       category_links = []
 
       for c in r.categories
-        category_links.push("<a href='/categories/#{c.id}'>#{c.name}</a>")
+        category_links.push("<a href='/resources/tag/#{c.name}'>#{c.name}</a>")
 
       $(".results-list").append(
         "<li>

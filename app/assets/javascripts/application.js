@@ -16,5 +16,8 @@
 //= require select2
 
 $(function() {
-  $("select").select2();
+  $("select").removeClass('form-control').select2({
+    placeholder: "Choose",
+    allowClear: true
+  });
 });
