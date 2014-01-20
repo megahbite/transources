@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  include Authority::UserAbilities
 
   rolify
   # Include default devise modules. Others available are:

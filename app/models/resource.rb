@@ -1,8 +1,4 @@
 class Resource < ActiveRecord::Base
-  include Authority::Abilities
-
-  self.authorizer_name = "ResourceAuthorizer"
-
   has_and_belongs_to_many :categories
 
   has_many :comments, -> { order(created_at: :desc) }

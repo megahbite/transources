@@ -16,7 +16,7 @@
               Anonymous
             &middot;
             = c.created_at
-        - if current_user.can_delete?(c)
+        - if policy(c).delete?
           .actions
             = form_tag resource_comment_path(@resource, c), method: :delete do
               = submit_tag "Delete", class: "btn btn-link btn-xs"

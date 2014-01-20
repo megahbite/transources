@@ -1,10 +1,1 @@
-%h1 Welcome to Transources
-%p 
-  We currently have
-  %strong= Resource.count
-  resources from across the world
-
-%p
-  = link_to "You can search for something that can help you", resources_path
-  or
-  = link_to "add to our database of resources", new_resource_path
+= render partial: "resources/search_form", locals: {categories: @categories}

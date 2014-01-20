@@ -1,6 +1,5 @@
 class ResourcesController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show, :search]
-  authorize_actions_for Resource, except: [:index, :show, :search]
 
   def index
     @categories = Category.all
@@ -17,7 +16,7 @@ class ResourcesController < ApplicationController
 
   def new
     @resource = Resource.new
-
+    authorize @resource
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @resource }
@@ -26,11 +25,12 @@ class ResourcesController < ApplicationController
 
   def edit
     @resource = Resource.find(params[:id])
+    authorize @resource
   end
 
   def create
     @resource = Resource.new(resource_params)
-
+    authorize @resource
     @resource.longlat = "POINT(#{@resource.long} #{@resource.lat})" 
 
     respond_to do |format|
@@ -46,6 +46,7 @@ class ResourcesController < ApplicationController
 
   def update
     @resource = Resource.find(params[:id])
+    authorize @resource
     p = resource_params 
     p.merge!({"longlat" => "POINT(#{p[:long]} #{p[:lat]})"}) if p.has_key? :long and p.has_key? :lat
     respond_to do |format|
@@ -61,6 +62,7 @@ class ResourcesController < ApplicationController
 
   def destroy
     @resource = Resource.find(params[:id])
+    authorize @resource
     @resource.destroy
 
     respond_to do |format|

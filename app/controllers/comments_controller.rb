@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
-  authorize_actions_for Comment
 
   def create
     @comment = Comment.new(comment_params)
+    authorize @comment
     @resource = Resource.find(params[:resource_id])
 
     @comment.resource = @resource
@@ -25,6 +25,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    authorize @comment
     @resource = Resource.find(params[:resource_id])
 
     @comment.destroy

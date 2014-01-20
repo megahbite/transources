@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require select2
 
+$(function() {
+  $("select").select2();
+});

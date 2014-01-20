@@ -6,24 +6,20 @@ gem 'sass-rails',   '~> 4.0.1'
 gem 'coffee-rails', '~> 4.0.1'
 gem 'uglifier', '>= 1.0.3'
 
-gem 'turbolinks'
-
 gem 'jquery-rails'
-gem 'bootstrap-sass',      github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
-gem 'authority'
+gem 'bootstrap-sass', '>= 3.0.0.0'
+gem 'pundit'
 gem 'devise'
 gem 'haml-rails'
 gem 'pg'
-gem 'rolify', "~> 3.3.0.rc4"
+gem 'rolify', "~> 3.3.0.rc5", github: 'EppO/rolify'
 gem 'sendgrid'
-gem 'simple_form',         github: 'plataformatec/simple_form' 
-gem 'activeadmin',         github: 'gregbell/active_admin'
-gem 'ransack'
-gem 'inherited_resources', github: 'josevalim/inherited_resources'
-gem 'formtastic',          github: 'justinfrench/formtastic'
+gem 'simple_form'
 gem 'country_select'
 
 gem 'activerecord-postgis-adapter'
+
+gem 'select2-rails'
 
 group :development do
   gem 'better_errors'
@@ -41,9 +37,14 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'faker'
   gem 'shoulda'
+
+  gem "debugger", :platforms => [:mingw_19, :ruby_19]
+  gem 'byebug', :platforms => [:mingw_20, :ruby_20]
+  gem 'pry-byebug', :platforms => [:mingw_20, :ruby_20]
+  gem 'pry-stack_explorer', :platforms => [:mingw_20, :ruby_20]
 end
 group :test do
   gem 'capybara'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
 end

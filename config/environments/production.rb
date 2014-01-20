@@ -79,7 +79,8 @@ Transources::Application.configure do
   }
 
   config.eager_load = true
-  config.assets.js_compressor = :uglifier
+  require 'uglifier'
+  config.assets.js_compressor = Uglifier.new(output: {ascii_only: true, quote_keys: true})
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
