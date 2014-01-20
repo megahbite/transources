@@ -1,6 +1,8 @@
 Transources
 ===========
 
+[![Build Status](https://travis-ci.org/megahbite/transources.png?branch=master)](https://travis-ci.org/megahbite/transources)
+
 Transources is a site for crowd sourcing trans* related resources like health services and friendly hair removal clinics.
 
 It allows anonymous reviews and comments on resources to protect the privacy of the site's users.
