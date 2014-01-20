@@ -1,5 +1,6 @@
-adapter: postgis
-host: 127.0.0.1
-database: transources_test
-username: postgres
-setup: default
+test:
+  adapter: postgis
+  host: 127.0.0.1
+  database: transources_test
+  username: postgres
+  setup: default
