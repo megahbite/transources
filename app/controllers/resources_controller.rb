@@ -1,5 +1,5 @@
 class ResourcesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show, :search]
+  before_filter :authenticate_user!, except: [:index, :show, :search, :tag]
 
   def index
     @categories = ActsAsTaggableOn::Tag
@@ -28,6 +28,11 @@ class ResourcesController < ApplicationController
 
   def edit
     @resource = Resource.find(params[:id])
+    @categories = ActsAsTaggableOn::Tag
+    .includes(:taggings)
+    .where(taggings: { context: 'categories' })
+    .distinct
+    .map { |c| c.name }
     authorize @resource
   end
 
