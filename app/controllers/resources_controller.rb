@@ -28,11 +28,6 @@ class ResourcesController < ApplicationController
 
   def edit
     @resource = Resource.find(params[:id])
-    @categories = ActsAsTaggableOn::Tag
-    .includes(:taggings)
-    .where(taggings: { context: 'categories' })
-    .distinct
-    .map { |c| c.name }
     authorize @resource
   end
 

@@ -8,6 +8,8 @@ Transources::Application.routes.draw do
     end
   end
 
+  get "tags/categories", to: "tags#categories"
+
   root :to => "home#index"
   devise_for :users
 end

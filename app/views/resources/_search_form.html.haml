@@ -1,4 +1,4 @@
-= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GMAPS_API_KEY']}&sensor=false"
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GMAPS_API_KEY']}&sensor=false"
 
 #alert-template.alert.alert-info{style: "display: none;"}
   %button.close{type: "button", data: {dismiss: "alert"}}
@@ -21,7 +21,7 @@
           = label_tag 'location', "Location", class: 'sr-only'
           .input-group
             %span.input-group-addon In
-            = text_field_tag 'location', nil, placeholder: "Enter an address...", class: "form-control"
+            = text_field_tag 'location', nil, placeholder: "Enter an address...", class: "form-control js-location-autocomplete"
         .col-xs-12.col-md-5
           = label_tag 'radius', "Radius", class: 'sr-only'
           .input-group
