@@ -21,7 +21,7 @@ set :scm, :git
 # set :log_level, :debug
 
 # Default value for :pty is false
-set :pty, true
+set :pty, false
 
 # Default value for :linked_files is []
 set :linked_files, %w{config/database.yml config/local_env.yml}
@@ -42,19 +42,23 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, "#{fetch(:deploy_to)}/tmp/restart.txt"
+      execute :touch, release_path.join("tmp/restart.txt")
     end
   end
 
   task :start do
     on roles(:app) do
-      execute :passenger, "start -d -e production"
+      within release_path do
+        execute :bundle, "exec passenger start -d -e production"
+      end
     end
   end
 
-  task :start do
+  task :stop do
     on roles(:app) do
-      execute :passenger, "stop"
+      within release_path do
+        execute :bundle, "exec passenger stop"
+      end
     end
   end
 
@@ -70,6 +74,8 @@ namespace :deploy do
   end
 
   after :updated, :cleanup
+
+  before :starting, 'git:commit_check'
 end
 
 require "./config/boot"

@@ -1,0 +1,19 @@
+namespace :git do
+  desc "Check all local changes are committed"
+  task :commit_check do
+    `git diff HEAD --exit-code`
+    return_code = $?.to_i
+
+    if return_code != 0
+      abort "Uncommited local changes"
+    end
+
+    local_sha = `git log --pretty=format:%H master -1`.chomp
+    `git fetch origin`
+    remote_sha = `git log --pretty=format:%H origin/master -1`.chomp
+
+    unless local_sha == remote_sha
+      abort "Local branch is not up to date with the remote branch"
+    end
+  end
+end
