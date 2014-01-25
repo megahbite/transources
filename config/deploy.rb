@@ -42,8 +42,8 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      if test("[ -f #{previous_release}/tmp/pids/passenger.3000.pid ]")
-        within previous_release do
+      if test("[ -f #{last_release_path}/tmp/pids/passenger.3000.pid ]")
+        within last_release_path do
           execute :bundle, :exec, :passenger, :stop
         end
       end
