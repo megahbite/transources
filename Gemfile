@@ -31,6 +31,10 @@ group :development do
   gem 'awesome_print'
   gem 'wirble'
   gem 'hirb'
+
+  # Use Capistrano for deployment
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-rails', '~> 1.1'
 end
 group :development, :test do
   gem 'factory_girl_rails'
