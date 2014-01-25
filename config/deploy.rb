@@ -42,7 +42,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      last_release = capture(:ls, '-xr', releases_path).split.first
+      last_release = capture(:ls, '-xr', releases_path).split()[1]
       last_release_path = releases_path.join(last_release)
       if test("[ -f #{last_release_path}/tmp/pids/passenger.3000.pid ]")
         within last_release_path do
