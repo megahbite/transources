@@ -2,4 +2,15 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  resources:
+    search: "Search"
+    search_prompt: "I want to find a"
+    categories: "Categories"
+    location:
+      prepend: "Near"
+      description: "Location"
+    radius:
+      prepend: "Within"
+      description: "Radius"
+      append: "km"
+    searching: "Searching..."

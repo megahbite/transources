@@ -6,30 +6,29 @@
 
 .row
   .col-xs-6
-    %h3 
-      Search
+    %h3= t('resources.search')
     = form_tag search_resources_path, method: :post, remote: true do
       .row.form-group
         .col-xs-12
-          %p.form-control-static I want to find a
+          %p.form-control-static= t('resources.search_prompt')
       .row.form-group
         .col-xs-12
-          = label_tag 'categories', "Categories", class: 'sr-only'
+          = label_tag 'categories', t('resources.categories'), class: 'sr-only'
           = select_tag 'categories', options_from_collection_for_select(categories, "name", "name"), multiple: true, style: "display: block;"
       .row.form-group
         .col-xs-12.col-md-5
-          = label_tag 'location', "Location", class: 'sr-only'
+          = label_tag 'location', t('resources.location.description'), class: 'sr-only'
           .input-group
-            %span.input-group-addon In
-            = text_field_tag 'location', nil, placeholder: "Enter an address...", class: "form-control js-location-autocomplete"
+            %span.input-group-addon= t('resources.location.prepend')
+            = text_field_tag 'location', nil, class: "form-control js-location-autocomplete"
         .col-xs-12.col-md-5
-          = label_tag 'radius', "Radius", class: 'sr-only'
+          = label_tag 'radius', t('resources.radius.description'), class: 'sr-only'
           .input-group
-            %span.input-group-addon Within
+            %span.input-group-addon= t('resources.radius.prepend')
             = number_field_tag 'radius', 20, min: 1, class: "form-control"
-            %span.input-group-addon km
+            %span.input-group-addon= t('resources.radius.append')
         .col-xs-12.col-md-2
-          = button_tag "Search", class: "btn btn-primary js-location-search", type: "button", data: { "loading-text" => "Searching..." }
+          = button_tag "Search", class: "btn btn-primary js-location-search", type: "button", data: { "loading-text" => t('resources.searching') }
 
 .row
   .col-md-6.col-xs-12

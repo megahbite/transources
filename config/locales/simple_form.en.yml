@@ -21,4 +21,11 @@ en:
     # hints:
     #   username: 'User name to sign in.'
     #   password: 'No special characters, please.'
+    placeholders:
+      location: "Enter an address..."
+
+    labels:
+      location: "Location"
+      radius: "Radius"
+      categories: "Categories"
 
