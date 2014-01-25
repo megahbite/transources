@@ -42,14 +42,21 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join("tmp/restart.txt")
+      if test("[ -f #{previous_release}/tmp/pids/passenger.3000.pid ]")
+        within previous_release do
+          execute :bundle, :exec, :passenger, :stop
+        end
+      end
+      within release_path do
+        execute :bundle, :exec, :passenger, :start, "-e #{fetch(:rails_env)} -d"
+      end
     end
   end
 
   task :start do
     on roles(:app) do
       within release_path do
-        execute :bundle, "exec passenger start -d -e production"
+        execute :bundle, "exec passenger start -d -e #{fetch(:rails_env)}"
       end
     end
   end
