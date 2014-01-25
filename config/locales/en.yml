@@ -3,7 +3,9 @@
 
 en:
   resources:
-    search: "Search"
+    description: "Resources"
+    new: "New resource"
+    edit: "Editing resource"
     search_prompt: "I want to find a"
     categories: "Categories"
     location:
@@ -14,3 +16,28 @@ en:
       description: "Radius"
       append: "km"
     searching: "Searching..."
+
+  sessions:
+    login: "Login"
+    logout: "Logout"
+
+  registrations:
+    edit: "Edit account"
+    new: "Sign up"
+
+  passwords:
+    forgotten: "Forgot your password?"
+    reset_instructions: "We'll send password reset instructions."
+    reset: "Reset Password"
+
+  comments:
+    description: "Comments"
+    none: "No comments to display"
+    anonymous_prompt: "Post as anonymous?"
+
+  common:
+    actions:
+      search: "Search"
+      new: "New"
+      delete: "Delete"
+    anonymous: "Anonymous"

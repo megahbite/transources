@@ -1,7 +1,7 @@
-%h4 Comments
+%h4= t('comments.description')
 - if @resource.comments.empty?
   .no-comments
-    %p No comments to display
+    %p= t('comments.none')
 - else
   .comments
     - @resource.comments.each do |c|
@@ -13,13 +13,13 @@
             - if c.user
               = c.user.name
             - else
-              Anonymous
+              = t('common.anonymous')
             &middot;
             = c.created_at
         - if policy(c).destroy?
           .actions
             = form_tag resource_comment_path(@resource, c), method: :delete do
-              = submit_tag "Delete", class: "btn btn-link btn-xs"
+              = submit_tag t('common.actions.delete'), class: "btn btn-link btn-xs"
 
 
 = simple_form_for([@resource, Comment.new()], html: { class: "form-horizontal" }) do |f|
@@ -31,5 +31,5 @@
   .checkbox
     %label
       = f.check_box :anonymous
-      Post as anonymous?
+      = t('comments.anonymous_prompt')
   = f.button :submit, class: "btn btn-primary"

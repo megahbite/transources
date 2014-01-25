@@ -9,14 +9,14 @@
     .row
       .col-xs-6
         %p
-          %strong Categories:
+          %strong= "#{t('resources.categories')}:"
           = @resource.categories.map { |c| c.name }.join(', ')
 
         %p!= @resource.join_address("<br>")
       .col-xs-6
         %a.btn.btn-default.btn-xs{href: url_for(edit_resource_path(@resource))}
           %i.glyphicon.glyphicon-edit
-          Edit
+          = t('common.actions.edit')
 
     .map{data: {lat: @resource.lat, long: @resource.long}}
 
