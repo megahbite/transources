@@ -23,6 +23,10 @@ gem 'activerecord-postgis-adapter'
 
 gem 'select2-rails'
 
+group :production do
+  gem 'passenger'
+end
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
