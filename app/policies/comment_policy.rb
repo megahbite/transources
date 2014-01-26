@@ -19,4 +19,8 @@ class CommentPolicy < ApplicationPolicy
   def destroy?
     user.has_role?(:admin) or comment.user == user
   end
+
+  def manage?
+    user.has_role?(:admin)
+  end
 end

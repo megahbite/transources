@@ -26,14 +26,25 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     authorize @comment
-    @resource = Resource.find(params[:resource_id])
+    @resource = Resource.find(params[:resource_id]) if params[:resource_id].present?
 
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to @resource }
+      format.html { 
+        if @resource  
+          redirect_to @resource 
+        else 
+          redirect_to manage_comments_path
+        end
+      }
       format.json { head :no_content }
     end
+  end
+
+  def manage
+    @comments = Comment.order(created_at: :desc).page params[:page]
+    authorize @comments
   end
 
 private

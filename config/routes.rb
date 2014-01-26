@@ -10,6 +10,12 @@ Transources::Application.routes.draw do
 
   get "tags/categories", to: "tags#categories"
 
+  resources :comments, only: [:destroy] do
+    collection do
+      get "manage"
+    end
+  end
+
   root :to => "home#index"
   devise_for :users
 end

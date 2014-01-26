@@ -34,9 +34,13 @@ en:
     description: "Comments"
     none: "No comments to display"
     anonymous_prompt: "Post as anonymous?"
+    text: "Comment text"
+    date: "Date"
+    author: "Author"
 
   common:
     actions:
+      description: "Actions"
       search: "Search"
       new: "New"
       delete: "Delete"

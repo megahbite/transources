@@ -17,11 +17,16 @@ gem 'sendgrid'
 gem 'simple_form'
 gem 'country_select'
 
+# Tagging
 gem 'acts-as-taggable-on'
 
 gem 'activerecord-postgis-adapter'
 
 gem 'select2-rails'
+
+# Pagination
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 group :production do
   gem 'passenger'

@@ -1,0 +1,23 @@
+= paginate @comments
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= t('resources.description')
+      %th= t('comments.text')
+      %th= t('comments.author')
+      %th= t('comments.date')
+      %th= t('common.actions.description')
+  %tbody
+    - @comments.each do |c|
+      %tr
+        %td= link_to c.resource.title, c.resource
+        %td.comment_text{data: {content: c.text, trigger: "hover", placement: "bottom", container: "body"}}
+          = truncate(c.text, length: 20)
+        %td= c.user ? c.user.name : t('common.anonymous')
+        %td= c.created_at
+        %td
+          .dropdown
+            %a.js-dropdown{id: "#{c.id}_dropdown", data: {toogle: "dropdown"}, href: "#"}= t('common.actions.description')
+            %ul.dropdown-menu{role: "menu", aria: {labelledby: "#{c.id}_dropdown"}}
+              %li= link_to t('common.actions.delete'), c, method: "delete"
