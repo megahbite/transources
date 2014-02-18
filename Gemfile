@@ -12,7 +12,7 @@ gem 'pundit'
 gem 'devise'
 gem 'haml-rails'
 gem 'pg'
-gem 'rolify', "~> 3.3.0.rc5", github: 'EppO/rolify'
+gem 'rolify', "~> 3.4.0"
 gem 'sendgrid'
 gem 'simple_form'
 gem 'country_select'
@@ -27,6 +27,8 @@ gem 'select2-rails'
 # Pagination
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+
+gem 'pry-rails'
 
 group :production do
   gem 'passenger'

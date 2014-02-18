@@ -18,6 +18,6 @@
         %td= c.created_at
         %td
           .dropdown
-            %a.js-dropdown{id: "#{c.id}_dropdown", data: {toogle: "dropdown"}, href: "#"}= t('common.actions.description')
+            %a.js-dropdown{id: "#{c.id}_dropdown", data: {toggle: "dropdown"}, href: "#"}= t('common.actions.description')
             %ul.dropdown-menu{role: "menu", aria: {labelledby: "#{c.id}_dropdown"}}
               %li= link_to t('common.actions.delete'), c, method: "delete"

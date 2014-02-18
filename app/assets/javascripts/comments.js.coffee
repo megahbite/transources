@@ -4,5 +4,5 @@
 
 $(->
   $('.comment_text').popover()
-  $('.js-dropdown').dropdown()
+  #$('.js-dropdown').dropdown()
 )
