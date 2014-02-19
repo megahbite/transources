@@ -23,4 +23,12 @@ class CommentPolicy < ApplicationPolicy
   def manage?
     user.has_role?(:admin)
   end
+
+  def spam?
+    user.has_role?(:admin)
+  end
+
+  def ham?
+    user.has_role?(:admin)
+  end
 end

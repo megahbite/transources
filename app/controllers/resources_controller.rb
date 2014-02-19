@@ -1,5 +1,5 @@
 class ResourcesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show, :search, :tag]
+  before_filter :authenticate_user!, except: [:index, :show, :search, :tag, :search_all]
 
   def index
     @categories = ActsAsTaggableOn::Tag
@@ -84,6 +84,24 @@ class ResourcesController < ApplicationController
     @resources = @resources.tagged_with(params[:categories], any: true) unless params[:categories].blank?
 
     render json: @resources.to_json(include: :categories), status: :ok
+  end
+
+  def search_all
+    @resources = Resource.select([:id, :title, :town])
+      .where("title like :q", q: "%#{params[:q]}%")
+      .order(:title)
+      .page(params[:page]).per(params[:per])
+    resources_count = Resource.select([:id, :title, :town])
+      .where("title like :q", q: "%#{params[:q]}%").count
+
+    respond_to do |format|
+      format.json { 
+        render json: {
+          total: resources_count, 
+          resources: @resources.map { |e| { id: e.id, text: "#{e.title} (#{e.town})" } } 
+        } 
+      }
+    end
   end
 
   def tag

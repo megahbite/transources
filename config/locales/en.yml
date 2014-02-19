@@ -37,6 +37,8 @@ en:
     text: "Comment text"
     date: "Date"
     author: "Author"
+    spam: "Spam"
+    filter: "Filter comments"
 
   common:
     actions:
@@ -44,4 +46,7 @@ en:
       search: "Search"
       new: "New"
       delete: "Delete"
+      spam: "Mark as spam"
+      ham: "Mark as not spam"
+      filter: "Filter"
     anonymous: "Anonymous"

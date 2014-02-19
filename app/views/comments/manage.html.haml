@@ -1,23 +1,48 @@
-= paginate @comments
+.row 
+  .col-xs-12
+    = paginate @comments
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th= t('resources.description')
-      %th= t('comments.text')
-      %th= t('comments.author')
-      %th= t('comments.date')
-      %th= t('common.actions.description')
-  %tbody
-    - @comments.each do |c|
-      %tr
-        %td= link_to c.resource.title, c.resource
-        %td.comment_text{data: {content: c.text, trigger: "hover", placement: "bottom", container: "body"}}
-          = truncate(c.text, length: 20)
-        %td= c.user ? c.user.name : t('common.anonymous')
-        %td= c.created_at
-        %td
-          .dropdown
-            %a.js-dropdown{id: "#{c.id}_dropdown", data: {toggle: "dropdown"}, href: "#"}= t('common.actions.description')
-            %ul.dropdown-menu{role: "menu", aria: {labelledby: "#{c.id}_dropdown"}}
-              %li= link_to t('common.actions.delete'), c, method: "delete"
+.row
+  .col-xs-12.col-sm-3.pull-right
+    %h3= t('comments.filter')
+    %p
+      = form_tag manage_comments_path, method: :get, class: "form" do
+        .form-group
+          = label_tag :resource_id
+          - if @resource
+            = hidden_field_tag :resource_id, @resource.id, class: "select2 ajax", data: { source: search_all_resources_path, text: "#{@resource.title} (#{@resource.town})" }, style: "width: 100%"
+          - else
+            = hidden_field_tag :resource_id, "", class: "select2 ajax", data: { source: search_all_resources_path }, style: "width: 100%"
+        .form-group
+          = label_tag :spam
+          = select_tag :spam, options_for_select(["true", "false"], params[:spam]), prompt: "All"
+        = submit_tag t('common.actions.filter'), class: "btn btn-default"
+
+  .col-xs-12.col-sm-9
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= t('resources.description')
+          %th= t('comments.text')
+          %th= t('comments.author')
+          %th= t('comments.date')
+          %th= t('comments.spam')
+          %th= t('common.actions.description')
+      %tbody
+        - @comments.each do |c|
+          %tr
+            %td= link_to c.resource.title, c.resource
+            %td.comment_text{data: {content: c.text, trigger: "hover", placement: "bottom", container: "body"}}
+              = truncate(c.text, length: 20)
+            %td= c.user ? c.user.name : t('common.anonymous')
+            %td= c.created_at
+            %td= c.spam
+            %td
+              .dropdown
+                %a.js-dropdown{id: "#{c.id}_dropdown", data: {toggle: "dropdown"}, href: "#"}= t('common.actions.description')
+                %ul.dropdown-menu{role: "menu", aria: {labelledby: "#{c.id}_dropdown"}}
+                  %li= link_to t('common.actions.delete'), c, method: "delete"
+                  - if c.spam
+                    %li= link_to t('common.actions.ham'), ham_comment_path(c)
+                  - else
+                    %li= link_to t('common.actions.spam'), spam_comment_path(c)

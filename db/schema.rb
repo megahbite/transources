@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140120093012) do
+ActiveRecord::Schema.define(version: 20140218042059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(version: 20140120093012) do
     t.integer  "resource_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_ip"
+    t.string   "user_agent"
+    t.string   "referrer"
+    t.boolean  "spam"
   end
 
   create_table "resources", force: true do |t|

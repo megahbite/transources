@@ -4,6 +4,7 @@ Transources::Application.routes.draw do
     resources :comments, only: [:create, :destroy]
     collection do
       get 'search'
+      get 'search_all'
       get 'tag/:tag_id', to: "resources#tag"
     end
   end
@@ -13,6 +14,10 @@ Transources::Application.routes.draw do
   resources :comments, only: [:destroy] do
     collection do
       get "manage"
+    end
+    member do
+      get 'spam'
+      get 'ham'
     end
   end
 
