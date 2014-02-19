@@ -5,3 +5,5 @@ rvm:
 bundler_args: --without production
 before_script: ./travis/before_script.sh
 script: bundle exec rake spec
+env:
+  - secure: "czndsqsskuS73LW1sYBKlZ2rdDDwIfolDzDoQQZ/5qzjA7/qFekR9Vc7eoiyehZUMmlD8x3m5S2I7qcEFNiCpacX6I3XBKXv5PWDZrEUnisYgQKHYfWOZgoA4+47xzWEE8TZ8DqseQyuMW/ytttsQKC/C/nNxhpw/418JZXzt3M="
