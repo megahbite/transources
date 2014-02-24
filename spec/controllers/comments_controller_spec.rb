@@ -4,6 +4,7 @@ describe CommentsController do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:admin_user) { FactoryGirl.create(:admin) }
+  let(:spam_user) { FactoryGirl.create(:user, name: "viagra-test-123") }
 
   let(:resource) { FactoryGirl.create(:resource) }
 
@@ -34,16 +35,43 @@ describe CommentsController do
         assigns(:comment).should be_a(Comment)
         assigns(:comment).should be_persisted
       end
+
+      it "marks as spam any spam comments" do
+        sign_in spam_user
+        post :create, { resource_id: resource.id, comment: valid_attributes }
+
+        expect(assigns(:comment).spam).to be_true
+      end
     end
   end
 
   describe "DELETE destroy" do
-    before(:each) { sign_in admin_user }
     it "destroys the requested comment" do
+      sign_in admin_user
       comment
       expect {
         delete :destroy, { resource_id: comment.resource.to_param, :id => comment.to_param}
       }.to change(Comment, :count).by(-1)
+    end
+
+    context "regular user" do
+      it "can destroy their own comment" do
+        sign_in user
+        comment.user = user
+        comment.save!
+        expect {
+          delete :destroy, { resource_id: comment.resource.to_param, id: comment.to_param }
+        }.to change(Comment, :count).by(-1)
+      end
+
+      it "can't destroy someone else's comment" do
+        sign_in user
+        comment.user = FactoryGirl.create(:user)
+        comment.save!
+        delete :destroy, { resource_id: comment.resource.to_param, id: comment.to_param }
+        expect(flash[:error]).to_not be_nil
+        expect(flash[:error]).to include "not authorized"
+      end
     end
   end
 
