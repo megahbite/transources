@@ -12,6 +12,20 @@ $(->
     
     geocoder.geocode { address: address }, (response, status) ->
       if status != google.maps.GeocoderStatus.OK
+        message = ""
+        switch status
+          when google.maps.GeocoderStatus.ZERO_RESULTS then message = "Address not found."
+          when google.maps.GeocoderStatus.OVER_QUERY_LIMIT then message = "Exceeded quota of Google Maps requests for today. Try again tomorrow."
+          when google.maps.GeocoderStatus.REQUEST_DENIED then message = "Geocoding request denied."
+          when google.maps.GeocoderStatus.INVALID_REQUEST then message = "Invalid geocoding request"
+          when google.maps.GeocoderStatus.UNKNOWN_ERROR then message = "Unknown error from Google Maps."
+        message += "<br />#{response.error_message}" if response.error_message?
+        $('#errors').html("
+          <div class=\"alert alert-danger alert-dismissable\">
+            <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&#215;</button>
+            #{message}
+          </div>
+          ")
         return # Show a validation error
 
       location = response[0].geometry.location
