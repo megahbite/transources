@@ -42,6 +42,10 @@ $(->
     $('#alert-template button').after("<span>#{message}</span>")
     $('#alert-template').fadeIn('slow')
 
+  ShowInfoWindow = (map, marker, infoWindow)->
+    ->
+      infoWindow.open(map, marker)
+
   ShowSearchResults = (center, radius, resources) ->
     
     center = new google.maps.LatLng(center[0], center[1])
@@ -93,8 +97,7 @@ $(->
           title: r.title
         })
 
-      google.maps.event.addListener(m, 'click', ->
-        w.open(map, m))
+      google.maps.event.addListener(m, 'click', ShowInfoWindow(map, m, w))
 
       category_links = []
 
