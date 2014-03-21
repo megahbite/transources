@@ -1,5 +1,10 @@
 = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GMAPS_API_KEY']}&sensor=false"
 
+%script#errors-template{type: "text/html"}
+  %div.alert.alert-danger.alert-dismissable
+    %button.close{type: "button", data: { dismiss: "alert"} } &#215;
+    {{message}}
+
 #errors
 
 = simple_form_for(@resource, html: { class: 'edit_resource' }) do |f|

@@ -17,6 +17,21 @@
 @import "home";
 @import "resources";
 
+@import "mixins";
+
 .select2-container {
   display: block;
+  margin-bottom: 10px;
+
+  .select2-choices {
+    @include border-radius(4px);
+  }
+
+  &.select2-dropdown-open {
+    .select2-choices {
+      @include border-bottom-left-radius(0px);
+      @include border-bottom-right-radius(0px);
+    }
+  }
 }
+

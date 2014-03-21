@@ -33,6 +33,9 @@ gem 'pry-rails'
 # Akismet for spam protection
 gem 'rakismet'
 
+# Mustache for client side templating
+gem 'mustache-js-rails'
+
 group :production do
   gem 'passenger'
 end

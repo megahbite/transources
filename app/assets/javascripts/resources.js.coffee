@@ -5,11 +5,13 @@
 $(->
   # Edit/Create Resource
 
+  $.Mustache.addFromDom('errors-template')
+
   window.GetLatLong = ->
     geocoder = new google.maps.Geocoder
 
     address = "#{$('#resource_address_line_1').val()}, #{$('#resource_address_line_2').val()}, #{$('#resource_town').val()}, #{$('#resource_country').val()}"
-    
+
     geocoder.geocode { address: address }, (response, status) ->
       if status != google.maps.GeocoderStatus.OK
         message = ""
@@ -20,19 +22,16 @@ $(->
           when google.maps.GeocoderStatus.INVALID_REQUEST then message = "Invalid geocoding request"
           when google.maps.GeocoderStatus.UNKNOWN_ERROR then message = "Unknown error from Google Maps."
         message += "<br />#{response.error_message}" if response.error_message?
-        $('#errors').html("
-          <div class=\"alert alert-danger alert-dismissable\">
-            <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&#215;</button>
-            #{message}
-          </div>
-          ")
+
+        $('#errors').mustache('errors-template', {message: message})
+
         return # Show a validation error
 
       location = response[0].geometry.location
 
       $('#resource_lat').val(location.lat())
       $('#resource_long').val(location.lng())
-      
+
       $('.edit_resource').submit()
 
     false

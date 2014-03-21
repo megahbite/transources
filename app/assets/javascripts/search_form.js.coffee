@@ -5,6 +5,10 @@ $(->
   $('.js-location-autocomplete').each ->
     new google.maps.places.Autocomplete(this)
 
+  $.Mustache.addFromDom('info-window-template')
+  $.Mustache.addFromDom('alert-template')
+  $.Mustache.addFromDom('result-template')
+
   $(document).on('click', '#alert-template .close', (e) ->
     $('#alert-template span').remove)
 
@@ -15,7 +19,7 @@ $(->
     address = $('#location').val()
 
     geocoder.geocode {address: address}, (response, status) ->
-      
+
       if status != google.maps.GeocoderStatus.OK
         $(e.target).button('reset')
         ShowAlert('Not a valid address!')
@@ -38,16 +42,14 @@ $(->
   )
 
   ShowAlert = (message) ->
-    $('#alert-template span').remove()
-    $('#alert-template button').after("<span>#{message}</span>")
-    $('#alert-template').fadeIn('slow')
+    $('#alert').mustache('alert-template', { message: message }, { method: 'html' })
 
-  ShowInfoWindow = (map, marker, infoWindow)->
+  ShowInfoWindow = (map, marker, infoWindow) ->
     ->
       infoWindow.open(map, marker)
 
   ShowSearchResults = (center, radius, resources) ->
-    
+
     center = new google.maps.LatLng(center[0], center[1])
 
     mapOptions = {
@@ -80,15 +82,7 @@ $(->
 
     for r in resources
       w = new google.maps.InfoWindow({
-          content: "<h3>#{r.title}</h3>
-                    <p><a href='/resources/#{r.id}'>Go to resource &gt;&gt;</a></p>
-                    <address>
-                      #{r.address_line_1}<br>
-                      #{r.address_line_2}<br>
-                      #{r.town}<br>
-                      #{r.country}
-                    </address>
-                    <p>#{r.description}</p>"
+          content: $.Mustache.render('info-window-template', r)
         })
 
       m = new google.maps.Marker({
@@ -99,15 +93,6 @@ $(->
 
       google.maps.event.addListener(m, 'click', ShowInfoWindow(map, m, w))
 
-      category_links = []
-
-      for c in r.categories
-        category_links.push("<a href='/resources/tag/#{c.name}'>#{c.name}</a>")
-
-      $(".results-list").append(
-        "<li>
-          <p><a href='/resources/#{r.id}'><strong>#{r.title}</strong></a><br>
-          <small>Categories: #{category_links.join(', ')}</small></p>
-        </li>")
+      $(".results-list").mustache('result-template', r)
 
 )
