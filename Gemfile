@@ -7,6 +7,7 @@ gem 'coffee-rails', '~> 4.0.1'
 gem 'uglifier', '>= 1.0.3'
 
 gem 'jquery-rails'
+gem 'underscore-rails'
 gem 'bootstrap-sass', '>= 3.0.0.0'
 gem 'pundit'
 gem 'devise'
@@ -35,6 +36,8 @@ gem 'rakismet'
 
 # Handlebars for client side templating
 gem 'handlebars_assets'
+
+gem 'jquery-datatables-rails'
 
 group :production do
   gem 'passenger'

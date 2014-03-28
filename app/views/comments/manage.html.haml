@@ -1,7 +1,3 @@
-.row 
-  .col-xs-12
-    = paginate @comments
-
 .row
   .col-xs-12.col-sm-3.pull-right
     %h3= t('comments.filter')
@@ -19,7 +15,7 @@
         = submit_tag t('common.actions.filter'), class: "btn btn-default"
 
   .col-xs-12.col-sm-9
-    %table.table.table-striped
+    %table.table.table-striped.table-bordered#comments_table
       %thead
         %tr
           %th= t('resources.description')

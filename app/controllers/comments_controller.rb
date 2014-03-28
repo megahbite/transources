@@ -37,10 +37,10 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { 
-        if @resource  
-          redirect_to @resource 
-        else 
+      format.html {
+        if @resource
+          redirect_to @resource
+        else
           redirect_to manage_comments_path
         end
       }
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
   end
 
   def manage
-    @comments = Comment.order(created_at: :desc).page params[:page]
+    @comments = Comment.order(created_at: :desc)
     if params[:resource_id].present?
       @comments = @comments.where(resource_id: params[:resource_id])
       @resource = Resource.find(params[:resource_id])
@@ -81,5 +81,5 @@ private
 
   def comment_params
     params.require(:comment).permit(:user_id, :text, :score, :resource_id).except(:anonymous)
-  end  
+  end
 end
