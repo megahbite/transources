@@ -80,7 +80,7 @@ module Transources
       end if File.exists?(env_file)
     end
 
-    config.assets.precompile += %w(resources.js search_form.js)
+    config.assets.precompile += %w(resources.js search_form.js comments.js home.js)
 
     config.i18n.enforce_available_locales = false
   end
