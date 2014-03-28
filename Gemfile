@@ -33,8 +33,8 @@ gem 'pry-rails'
 # Akismet for spam protection
 gem 'rakismet'
 
-# Mustache for client side templating
-gem 'mustache-js-rails'
+# Handlebars for client side templating
+gem 'handlebars_assets'
 
 group :production do
   gem 'passenger'

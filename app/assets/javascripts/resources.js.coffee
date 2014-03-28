@@ -5,8 +5,6 @@
 $(->
   # Edit/Create Resource
 
-  $.Mustache.addFromDom('errors-template')
-
   window.GetLatLong = ->
     geocoder = new google.maps.Geocoder
 
@@ -23,7 +21,7 @@ $(->
           when google.maps.GeocoderStatus.UNKNOWN_ERROR then message = "Unknown error from Google Maps."
         message += "<br />#{response.error_message}" if response.error_message?
 
-        $('#errors').mustache('errors-template', {message: message})
+        $('#errors').html(HandlebarsTemplate['resources/error']({message: message}))
 
         return # Show a validation error
 

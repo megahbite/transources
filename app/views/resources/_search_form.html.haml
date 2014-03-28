@@ -33,39 +33,3 @@
     .results-map
   .col-md-6.col-xs-12
     %ul.results-list.list-unstyled
-
-%script#alert-template{type: 'text/html'}
-  .alert.alert-info
-    %button.close{type: "button", data: {dismiss: "alert"}} &times;
-    {{message}}
-
-%script#info-window-template{type: 'text/html'}
-  %h3
-    {{title}}
-  %p
-    %a{href: "/resources/{{id}}"}
-      Go to resource &gt;&gt;
-  %address
-    {{address_line_1}}
-    %br
-    {{address_line_2}}
-    %br
-    {{town}}
-    %br
-    {{country}}
-  %p
-    {{description}}
-
-%script#result-template{type: 'text/html'}
-  %li
-    %p
-      %a{href:'/resources/{{id}}'}
-        %strong
-          {{title}}
-      %br
-      %small
-        Categories:
-        {{#categories}}
-        %a{href:'/resources/tag/{{name}}'}
-          {{name}}
-        {{/categories}}

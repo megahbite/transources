@@ -1,0 +1,3 @@
+.alert.alert-danger.alert-dismissable
+  %button.close{type: "button", data: { dismiss: "alert"} } &times;
+  {{message}}

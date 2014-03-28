@@ -1,0 +1,15 @@
+%h3
+  {{title}}
+%p
+  %a{href: "/resources/{{id}}"}
+    Go to resource &gt;&gt;
+%address
+  {{address_line_1}}
+  %br
+  {{address_line_2}}
+  %br
+  {{town}}
+  %br
+  {{country}}
+%p
+  {{description}}

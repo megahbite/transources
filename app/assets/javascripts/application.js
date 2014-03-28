@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require select2
-//= require jquery.mustache
-//= require mustache
+//= require handlebars.runtime
+//= require_tree ./templates
 
 $(function() {
   $("select").removeClass('form-control').select2({

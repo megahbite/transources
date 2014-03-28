@@ -5,10 +5,6 @@ $(->
   $('.js-location-autocomplete').each ->
     new google.maps.places.Autocomplete(this)
 
-  $.Mustache.addFromDom('info-window-template')
-  $.Mustache.addFromDom('alert-template')
-  $.Mustache.addFromDom('result-template')
-
   $(document).on('click', '#alert-template .close', (e) ->
     $('#alert-template span').remove)
 
@@ -42,7 +38,7 @@ $(->
   )
 
   ShowAlert = (message) ->
-    $('#alert').mustache('alert-template', { message: message }, { method: 'html' })
+    $('#alert').html(HandlebarsTemplates['resources/alert']({ message: message }))
 
   ShowInfoWindow = (map, marker, infoWindow) ->
     ->
@@ -82,7 +78,7 @@ $(->
 
     for r in resources
       w = new google.maps.InfoWindow({
-          content: $.Mustache.render('info-window-template', r)
+          content: HandlebarsTemplates['resources/info_window'](r)
         })
 
       m = new google.maps.Marker({
@@ -93,6 +89,6 @@ $(->
 
       google.maps.event.addListener(m, 'click', ShowInfoWindow(map, m, w))
 
-      $(".results-list").mustache('result-template', r)
+      $(".results-list").append(HandlebarsTemplates['resources/result'](r))
 
 )

@@ -106,6 +106,11 @@ GEM
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
+    handlebars_assets (0.15)
+      execjs (>= 1.2.9)
+      multi_json
+      sprockets (>= 2.0.3)
+      tilt
     hike (1.2.3)
     hirb (0.7.1)
     hpricot (0.8.6)
@@ -135,8 +140,6 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.4)
-    mustache-js-rails (0.0.7)
-      railties (>= 3.1)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -280,12 +283,12 @@ DEPENDENCIES
   factory_girl_rails
   faker
   haml-rails
+  handlebars_assets
   hirb
   html2haml
   jquery-rails
   kaminari
   kaminari-bootstrap (~> 3.0.1)
-  mustache-js-rails
   passenger
   pg
   pry-byebug
