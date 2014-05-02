@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218042059) do
+ActiveRecord::Schema.define(version: 20140421075141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "banned_ips", force: true do |t|
+    t.string   "ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "banned_ips", ["ip"], :name => "index_banned_ips_on_ip", :unique => true
 
   create_table "categories_resources", id: false, force: true do |t|
     t.integer "category_id"

@@ -38,6 +38,7 @@ en:
     date: "Date"
     author: "Author"
     spam: "Spam"
+    user_ip: "IP Address"
     filter: "Filter comments"
 
   common:

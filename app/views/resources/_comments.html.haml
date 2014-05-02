@@ -5,7 +5,7 @@
 - else
   .comments
     - @resource.comments.each do |c|
-      -unless c.spam?
+      -unless c.spam and request.remote_ip != c.user_ip
         .comment.well
           .body
             = c.text

@@ -18,6 +18,8 @@ class CommentsController < ApplicationController
 
     @comment.spam = @comment.spam?
 
+    @comment.spam = true if BannedIp.where(ip: request.remote_ip).exists?
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @resource, notice: 'Comment was successfully created.' }
@@ -59,6 +61,7 @@ class CommentsController < ApplicationController
       @comments = @comments.where(spam: ActiveRecord::ConnectionAdapters::Column.value_to_boolean(params[:spam]))
     end
     authorize @comments
+    @comments = @comments.decorate
   end
 
   def spam

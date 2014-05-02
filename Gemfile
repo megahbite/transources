@@ -39,6 +39,9 @@ gem 'handlebars_assets'
 
 gem 'jquery-datatables-rails'
 
+# Decorated objects
+gem 'draper'
+
 group :production do
   gem 'passenger'
 end

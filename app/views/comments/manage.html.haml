@@ -22,6 +22,7 @@
           %th= t('comments.text')
           %th= t('comments.author')
           %th= t('comments.date')
+          %th= t('comments.user_ip')
           %th= t('comments.spam')
           %th= t('common.actions.description')
       %tbody
@@ -32,12 +33,17 @@
               = truncate(c.text, length: 20)
             %td= c.user ? c.user.name : t('common.anonymous')
             %td= c.created_at
+            %td= c.user_ip
             %td= c.spam
             %td
               .dropdown
                 %a.js-dropdown{id: "#{c.id}_dropdown", data: {toggle: "dropdown"}, href: "#"}= t('common.actions.description')
                 %ul.dropdown-menu{role: "menu", aria: {labelledby: "#{c.id}_dropdown"}}
                   %li= link_to t('common.actions.delete'), c, method: "delete"
+                  - if c.is_banned?
+                    %li= link_to t('common.actions.unban_ip'), banned_ip_path(c.banned_ip), method: "delete"
+                  - else
+                    %li= link_to t('common.actions.ban_ip'), banned_ips_path(banned_ip: {ip: c.user_ip}), method: "post"
                   - if c.spam
                     %li= link_to t('common.actions.ham'), ham_comment_path(c)
                   - else
