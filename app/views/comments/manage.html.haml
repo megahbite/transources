@@ -15,7 +15,7 @@
         = submit_tag t('common.actions.filter'), class: "btn btn-default"
 
   .col-xs-12.col-sm-9
-    %table.table.table-striped.table-bordered#comments_table
+    %table.table.table-bordered#comments_table
       %thead
         %tr
           %th= t('resources.description')
@@ -27,7 +27,7 @@
           %th= t('common.actions.description')
       %tbody
         - @comments.each do |c|
-          %tr
+          %tr{data: {spam: c.spam, id: c.id}}
             %td= link_to c.resource.title, c.resource
             %td.comment_text{data: {content: c.text, trigger: "hover", placement: "bottom", container: "body"}}
               = truncate(c.text, length: 20)
@@ -45,6 +45,6 @@
                   - else
                     %li= link_to t('common.actions.ban_ip'), banned_ips_path(banned_ip: {ip: c.user_ip}), method: "post"
                   - if c.spam
-                    %li= link_to t('common.actions.ham'), ham_comment_path(c)
+                    %li= link_to t('common.actions.ham'), ham_comments_path(ids: [c.to_param])
                   - else
-                    %li= link_to t('common.actions.spam'), spam_comment_path(c)
+                    %li= link_to t('common.actions.spam'), spam_comments_path(ids: [c.to_param])

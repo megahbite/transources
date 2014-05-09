@@ -13,6 +13,8 @@
 @import "bootstrap_and_overrides";
 @import "select2";
 @import "dataTables/jquery.dataTables.bootstrap3";
+@import "dataTables/extras/TableTools";
+@import "dataTables/extras/TableTools_JUI";
 
 @import "comment";
 @import "home";

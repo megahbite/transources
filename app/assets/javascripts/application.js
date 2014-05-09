@@ -17,6 +17,8 @@
 //= require select2
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap3
+//= require dataTables/extras/TableTools
+//= require dataTables/extras/ZeroClipboard
 
 //= require handlebars.runtime
 //= require_tree ./templates

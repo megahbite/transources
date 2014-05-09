@@ -5,6 +5,7 @@
 $(->
   $('#comments_table').dataTable
     sPaginationType: "bootstrap"
+    sDom: 'T<"clearfix"><""l"F"f>t<p>'
     oLanguage:
       sSearch: ""
     fnPreDrawCallback: ->
@@ -13,6 +14,50 @@ $(->
       $('.dataTables_filter input').attr 'placeholder', 'Search'
       $('.dataTables_length select').addClass 'form-control input-sm'
       $('.dataTables_length select').css 'width', '75px'
+    oTableTools:
+      sRowSelect: "multi"
+      aButtons: [
+        "select_all",
+        "select_none",
+        {
+          sExtends: "text"
+          sButtonText: "Spam selected"
+          sButtonClass: "DTTT_disabled"
+          fnClick: (button) ->
+            return if $(button).hasClass('DTTT_disabled')
+            selected = this.fnGetSelected()
+            stack = []
+            $.each(selected, (i, node) ->
+              if ($(node).data('spam') == undefined)
+                stack.push $(node).data('id')
+            )
+            $.get("/comments/spam", {ids: stack}).always(-> location.reload()) if stack.length > 0
+          fnSelect: (button)->
+            if this.fnGetSelected().length == 0
+              $(button).addClass('DTTT_disabled')
+            else
+              $(button).removeClass('DTTT_disabled')
+        },
+        {
+          sExtends: "text"
+          sButtonText: "Unspam selected"
+          sButtonClass: "DTTT_disabled"
+          fnClick: (button) ->
+            return if $(button).hasClass('DTTT_disabled')
+            selected = this.fnGetSelected()
+            stack = []
+            $.each(selected, (i, node) ->
+              if ($(node).data('spam') != undefined)
+                stack.push $(node).data('id')
+            )
+            $.get("/comments/ham", {ids: stack}).always(-> location.reload()) if stack.length > 0
+          fnSelect: (button)->
+            if this.fnGetSelected().length == 0
+              $(button).addClass('DTTT_disabled')
+            else
+              $(button).removeClass('DTTT_disabled')
+        },
+      ]
 
   $('.comment_text').popover()
 

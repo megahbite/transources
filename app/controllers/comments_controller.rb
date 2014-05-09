@@ -65,18 +65,16 @@ class CommentsController < ApplicationController
   end
 
   def spam
-    @comment = Comment.find(params[:id])
-    authorize @comment
-    @comment.spam = @comment.spam!
-    @comment.save
+    @comments = Comment.where(id: params[:ids])
+    authorize @comments
+    @comments.each { |c| c.spam = c.spam!; c.save; }
     redirect_to :back
   end
 
   def ham
-    @comment = Comment.find(params[:id])
-    authorize @comment
-    @comment.spam = @comment.ham!
-    @comment.save
+    @comments = Comment.where(id: params[:ids])
+    authorize @comments
+    @comments.each { |c| c.spam = c.ham!; c.save; }
     redirect_to :back
   end
 

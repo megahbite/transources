@@ -50,4 +50,6 @@ en:
       spam: "Mark as spam"
       ham: "Mark as not spam"
       filter: "Filter"
+      ban_ip: "Ban IP"
+      unban_ip: "Unban IP"
     anonymous: "Anonymous"

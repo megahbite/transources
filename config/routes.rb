@@ -14,8 +14,6 @@ Transources::Application.routes.draw do
   resources :comments, only: [:destroy] do
     collection do
       get "manage"
-    end
-    member do
       get 'spam'
       get 'ham'
     end
