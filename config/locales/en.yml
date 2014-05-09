@@ -40,6 +40,7 @@ en:
     spam: "Spam"
     user_ip: "IP Address"
     filter: "Filter comments"
+    manage: "Manage comments"
 
   common:
     actions:
