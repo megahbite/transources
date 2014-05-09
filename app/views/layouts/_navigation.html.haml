@@ -28,7 +28,7 @@
           = link_to t('common.actions.search'), root_path
         %li
           = link_to t('common.actions.new'), new_resource_path
-    - if current_user.has_role?(:admin)
+    - if user_signed_in? && current_user.has_role?(:admin)
       %li.dropdown
         %a.dropdown-toggle{href: "#", data: { toggle: "dropdown" }}
           =t('admin.admin')
