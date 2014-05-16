@@ -136,7 +136,10 @@ describe ResourcesController do
   end
 
   describe "DELETE destroy" do
-    before(:each) { sign_in user }
+    before(:each) {
+      sign_in user
+      request.env["HTTP_REFERER"] = "I'm a little teapot"
+    }
     it "destroys the requested resource" do
       resource = Resource.create! valid_attributes
       expect {
@@ -147,7 +150,7 @@ describe ResourcesController do
     it "redirects to the resources list" do
       resource = Resource.create! valid_attributes
       delete :destroy, {:id => resource.to_param}, valid_session
-      response.should redirect_to(resources_url)
+      response.should redirect_to("I'm a little teapot")
     end
   end
 
