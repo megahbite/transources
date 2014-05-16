@@ -1,0 +1,35 @@
+.row
+  .col-xs-12.col-sm-3.pull-right
+    %h3= t('resources.filter')
+    %p
+      = form_tag manage_resources_path, method: :get, class: "form" do
+        .form-group
+          = label_tag :categories
+          = select_tag :categories, options_from_collection_for_select(@categories, "name", "name", params[:categories]), multiple: true, style: "display: block;"
+        = submit_tag t('common.actions.filter'), class: "btn btn-default"
+
+  .col-xs-12.col-sm-9
+    %table.table.table-bordered#resources_table
+      %thead
+        %tr
+          %th= t('resources.attributes.title')
+          %th= t('resources.attributes.description')
+          %th= t('resources.attributes.address')
+          %th= t('resources.categories')
+          %th= t('common.attributes.created_at')
+          %th= t('common.actions.description')
+      %tbody
+        - @resources.each do |r|
+          %tr
+            %td= r.title
+            %td.resource_description{data: {content: r.description, trigger: 'hover', placement: 'bottom', container: 'body'}}
+              = truncate(r.description, length: 20)
+            %td= r.address('<br>')
+            %td= r.categories_list
+            %td= r.created_at
+            %td
+              .dropdown
+                %a.js-dropdown{id: "#{r.id}_dropdown", data: {toggle: "dropdown"}, href: "#"}= t('common.actions.description')
+                %ul.dropdown-menu{role: "menu", aria: {labelledby: "#{r.id}_dropdown"}}
+                  %li= link_to t('common.actions.edit'), edit_resource_path(r)
+                  %li= link_to t('common.actions.delete'), r, method: "delete", confirm: "Are you sure?"

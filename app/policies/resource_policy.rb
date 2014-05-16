@@ -30,7 +30,11 @@ class ResourcePolicy < ApplicationPolicy
 
   def destroy?
     default
-  end 
+  end
+
+  def manage?
+    user.has_role?(:admin)
+  end
 
 private
   def default

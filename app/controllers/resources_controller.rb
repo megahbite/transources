@@ -9,7 +9,7 @@ class ResourcesController < ApplicationController
   end
 
   def show
-    @resource = Resource.find(params[:id])
+    @resource = Resource.find(params[:id]).decorate
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(resource_params)
     authorize @resource
-    @resource.longlat = "POINT(#{@resource.long} #{@resource.lat})" 
+    @resource.longlat = "POINT(#{@resource.long} #{@resource.lat})"
 
     respond_to do |format|
       if @resource.save
@@ -50,7 +50,7 @@ class ResourcesController < ApplicationController
   def update
     @resource = Resource.find(params[:id])
     authorize @resource
-    p = resource_params 
+    p = resource_params
     p.merge!({"longlat" => "POINT(#{p[:long]} #{p[:lat]})"}) if p.has_key? :long and p.has_key? :lat
     respond_to do |format|
       if @resource.update_attributes(p)
@@ -69,7 +69,7 @@ class ResourcesController < ApplicationController
     @resource.destroy
 
     respond_to do |format|
-      format.html { redirect_to resources_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
@@ -95,17 +95,30 @@ class ResourcesController < ApplicationController
       .where("title like :q", q: "%#{params[:q]}%").count
 
     respond_to do |format|
-      format.json { 
+      format.json {
         render json: {
-          total: resources_count, 
-          resources: @resources.map { |e| { id: e.id, text: "#{e.title} (#{e.town})" } } 
-        } 
+          total: resources_count,
+          resources: @resources.map { |e| { id: e.id, text: "#{e.title} (#{e.town})" } }
+        }
       }
     end
   end
 
   def tag
     @resources = Resource.tagged_with(params[:tag_id])
+  end
+
+  def manage
+    @resources = Resource.all
+    authorize @resources
+
+    @resources = @resources.tagged_with(params[:categories], any: true) unless params[:categories].blank?
+
+    @resources = @resources.decorate
+    @categories = ActsAsTaggableOn::Tag
+    .includes(:taggings)
+    .where(taggings: { context: 'categories' })
+    .distinct
   end
 
 private

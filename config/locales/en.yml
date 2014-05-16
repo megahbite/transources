@@ -16,6 +16,12 @@ en:
       description: "Radius"
       append: "km"
     searching: "Searching..."
+    filter: "Filter resources"
+    attributes:
+      title: "Title"
+      description: "Description"
+      address: "Address"
+      tags: "Tags"
 
   sessions:
     login: "Login"
@@ -43,11 +49,14 @@ en:
     manage: "Manage comments"
 
   common:
+    attributes:
+      created_at: "Created At"
     actions:
       description: "Actions"
       search: "Search"
       new: "New"
       delete: "Delete"
+      edit: "Edit"
       spam: "Mark as spam"
       ham: "Mark as not spam"
       filter: "Filter"

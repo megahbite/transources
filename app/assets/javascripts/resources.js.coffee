@@ -65,4 +65,20 @@ $(->
     }
 
     marker = new google.maps.Marker(markerOptions)
+
+  # Manage Resource
+
+  $('.resource_description').popover()
+
+  $('#resources_table').dataTable
+    sPaginationType: "bootstrap"
+    sDom: 'T<"clearfix"><""l"F"f>t<p>'
+    oLanguage:
+      sSearch: ""
+    fnPreDrawCallback: ->
+      $('.dataTables_filter input').addClass 'form-control input-sm'
+      $('.dataTables_filter input').css 'width', '200px'
+      $('.dataTables_filter input').attr 'placeholder', 'Search'
+      $('.dataTables_length select').addClass 'form-control input-sm'
+      $('.dataTables_length select').css 'width', '75px'
 )

@@ -21,7 +21,7 @@
           %th= t('resources.description')
           %th= t('comments.text')
           %th= t('comments.author')
-          %th= t('comments.date')
+          %th= t('common.attributes.created_at')
           %th= t('comments.user_ip')
           %th= t('comments.spam')
           %th= t('common.actions.description')
@@ -39,7 +39,7 @@
               .dropdown
                 %a.js-dropdown{id: "#{c.id}_dropdown", data: {toggle: "dropdown"}, href: "#"}= t('common.actions.description')
                 %ul.dropdown-menu{role: "menu", aria: {labelledby: "#{c.id}_dropdown"}}
-                  %li= link_to t('common.actions.delete'), c, method: "delete"
+                  %li= link_to t('common.actions.delete'), c, method: "delete", confirm: "Are you sure?"
                   - if c.is_banned?
                     %li= link_to t('common.actions.unban_ip'), banned_ip_path(c.banned_ip), method: "delete"
                   - else
