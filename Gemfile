@@ -58,9 +58,9 @@ group :development, :test do
   gem 'shoulda'
 
   gem "debugger", :platforms => [:mingw_19, :ruby_19]
-  gem 'byebug', :platforms => [:mingw_20, :ruby_20]
-  gem 'pry-byebug', :platforms => [:mingw_20, :ruby_20]
-  gem 'pry-stack_explorer', :platforms => [:mingw_20, :ruby_20]
+  gem 'byebug', :platforms => [:mingw_20, :ruby_20, :ruby_21]
+  gem 'pry-byebug', :platforms => [:mingw_20, :ruby_20, :ruby_21]
+  gem 'pry-stack_explorer', :platforms => [:mingw_20, :ruby_20, :ruby_21]
 end
 group :test do
   gem 'capybara'

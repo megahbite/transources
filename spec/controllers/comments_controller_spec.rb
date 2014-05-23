@@ -8,13 +8,13 @@ describe CommentsController do
 
   let(:resource) { FactoryGirl.create(:resource) }
 
-  let(:comment) { 
-    c = FactoryGirl.create(:comment) 
+  let(:comment) {
+    c = FactoryGirl.create(:comment)
     c.resource = resource
     c.save!
     c
   }
-  
+
   let(:valid_attributes) {
     a = FactoryGirl.attributes_for(:comment)
     a.merge!({ anonymous: '0' })
@@ -69,6 +69,52 @@ describe CommentsController do
         comment.user = FactoryGirl.create(:user)
         comment.save!
         delete :destroy, { resource_id: comment.resource.to_param, id: comment.to_param }
+        expect(flash[:error]).to_not be_nil
+        expect(flash[:error]).to include "not authorized"
+      end
+    end
+  end
+
+  describe "GET ham" do
+    before(:each) do
+      request.env["HTTP_REFERER"] = "I'm a little teapot"
+    end
+    it "changes the comments status to not spam" do
+      sign_in admin_user
+      comment.spam = true
+      comment.save!
+      get :ham, {ids: [comment.id]}
+      comment.reload
+      expect(comment.spam).to be_false
+    end
+
+    context "regular user" do
+      it "can't mark a comment as not spam" do
+        sign_in user
+        get :ham, {ids: [comment.id]}
+        expect(flash[:error]).to_not be_nil
+        expect(flash[:error]).to include "not authorized"
+      end
+    end
+  end
+
+  describe "GET spam" do
+    before(:each) do
+      request.env["HTTP_REFERER"] = "I'm a little teapot"
+    end
+    it "changes the comments status to spam" do
+      sign_in admin_user
+      comment.spam = false
+      comment.save!
+      get :spam, {ids: [comment.id]}
+      comment.reload
+      expect(comment.spam).to be_true
+    end
+
+    context "regular user" do
+      it "can't mark a comment as spam" do
+        sign_in user
+        get :spam, {ids: [comment.id]}
         expect(flash[:error]).to_not be_nil
         expect(flash[:error]).to include "not authorized"
       end

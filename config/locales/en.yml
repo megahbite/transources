@@ -8,6 +8,7 @@ en:
     edit: "Editing resource"
     search_prompt: "I want to find a"
     categories: "Categories"
+    manage: "Manage resources"
     location:
       prepend: "Near"
       description: "Location"
