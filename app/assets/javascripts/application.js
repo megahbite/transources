@@ -19,9 +19,12 @@
 //= require dataTables/jquery.dataTables.bootstrap3
 //= require dataTables/extras/TableTools
 //= require dataTables/extras/ZeroClipboard
+//= require jquery.raty
 
 //= require handlebars.runtime
 //= require_tree ./templates
+
+//= require comment_rating
 
 $(function() {
   $("select").removeClass('form-control').select2({

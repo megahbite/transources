@@ -72,7 +72,7 @@ $(->
 
   $('#resources_table').dataTable
     sPaginationType: "bootstrap"
-    sDom: 'T<"clearfix"><""l"F"f>t<p>'
+    sDom: '<""l"F"f>t<p>'
     oLanguage:
       sSearch: ""
     fnPreDrawCallback: ->
