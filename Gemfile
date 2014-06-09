@@ -8,7 +8,12 @@ gem 'uglifier', '>= 1.0.3'
 
 gem 'jquery-rails'
 gem 'underscore-rails'
-gem 'bootstrap-sass', '>= 3.0.0.0'
+
+# Bourbon and friends
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
+
 gem 'pundit'
 gem 'devise'
 gem 'haml-rails'
@@ -27,7 +32,7 @@ gem 'select2-rails'
 
 # Pagination
 gem 'kaminari'
-gem 'kaminari-bootstrap', '~> 3.0.1'
+#gem 'kaminari-bootstrap', '~> 3.0.1'
 
 gem 'pry-rails'
 

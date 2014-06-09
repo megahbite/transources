@@ -1,6 +1,6 @@
 #Search form
 $(->
-  $('.js-location-search').button()
+  #$('.js-location-search').button()
 
   $('.js-location-autocomplete').each ->
     new google.maps.places.Autocomplete(this)
@@ -9,7 +9,7 @@ $(->
     $('#alert-template span').remove)
 
   $(document).on('click', '.js-location-search', (e) ->
-    $(e.target).button('loading')
+    #$(e.target).button('loading')
     geocoder = new google.maps.Geocoder
 
     address = $('#location').val()
@@ -17,7 +17,7 @@ $(->
     geocoder.geocode {address: address}, (response, status) ->
 
       if status != google.maps.GeocoderStatus.OK
-        $(e.target).button('reset')
+        #$(e.target).button('reset')
         ShowAlert('Not a valid address!')
         return
 
@@ -33,7 +33,7 @@ $(->
           params += "&categories[]=#{c}"
 
       $.getJSON("/resources/search", params, (data) ->
-        $(e.target).button('reset')
+        #$(e.target).button('reset')
         ShowSearchResults([location.lat(), location.lng()], $('#radius').val(), data))
   )
 

@@ -9,10 +9,15 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
 */
+@import "normalize";
 
-@import "bootstrap_and_overrides";
+// Framework
+@import "bourbon";
+@import "base/base";
+@import "neat";
+
+// Plugins
 @import "select2";
-@import "dataTables/jquery.dataTables.bootstrap3";
 @import "dataTables/extras/TableTools";
 @import "dataTables/extras/TableTools_JUI";
 
