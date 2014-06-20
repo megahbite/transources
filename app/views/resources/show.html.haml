@@ -4,8 +4,10 @@
   .col-md-6.col-xs-12
     %h1
       = @resource.title
-
     %p.lead= @resource.description
+    .row
+      .col-xs-12
+        .resource-rating-show{data: {score: @resource.score}}
     .row
       .col-xs-6
         %p
@@ -23,5 +25,7 @@
 
 
   .col-md-6.col-xs-12
+    %h4= t('common.rate')
+    .resource-rating-edit{data: {score: @resource.score_for(current_user), submit_path: score_resource_path(@resource)}}
     -# Comments/Reviews
     = render "comments", locals: {resource: @resource}

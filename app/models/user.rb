@@ -9,9 +9,11 @@ class User < ActiveRecord::Base
 
   after_create :add_default_role
 
+  has_many :scores
+
 private
   def add_default_role
     self.add_role :user
   end
-  
+
 end

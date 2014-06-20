@@ -64,3 +64,4 @@ en:
       ban_ip: "Ban IP"
       unban_ip: "Unban IP"
     anonymous: "Anonymous"
+    rate: "Rate"

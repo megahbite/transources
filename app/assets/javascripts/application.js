@@ -24,7 +24,7 @@
 //= require handlebars.runtime
 //= require_tree ./templates
 
-//= require comment_rating
+//= require resource_rating
 
 $(function() {
   $("select").removeClass('form-control').select2({

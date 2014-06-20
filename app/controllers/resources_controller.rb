@@ -121,6 +121,11 @@ class ResourcesController < ApplicationController
     .distinct
   end
 
+  def score
+    Score.create(value: params[:score], resource_id: params[:id], user_id: current_user.id)
+    render nothing: true
+  end
+
 private
 
   def resource_params

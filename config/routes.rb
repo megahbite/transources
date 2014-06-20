@@ -8,6 +8,9 @@ Transources::Application.routes.draw do
       get 'search_all'
       get 'tag/:tag_id', to: "resources#tag"
     end
+    member do
+      post 'score'
+    end
   end
 
   get "tags/categories", to: "tags#categories"
