@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ResourcesController do
   let(:valid_session) { {} }
@@ -10,7 +10,7 @@ describe ResourcesController do
   describe "GET show" do
     it "assigns the requested resource as @resource" do
       get :show, { id: resource.to_param }
-      assigns(:resource).should eq(resource)
+      expect(assigns(:resource)).to eq(resource)
     end
   end
 
@@ -18,7 +18,7 @@ describe ResourcesController do
     it "assigns a new resource as @resource" do
       sign_in user
       get :new
-      assigns(:resource).should be_a_new(Resource)
+      expect(assigns(:resource)).to be_a_new(Resource)
     end
   end
 
@@ -26,7 +26,7 @@ describe ResourcesController do
     it "assigns the requested resource as @resource" do
       sign_in user
       get :edit, { id: resource.to_param }
-      assigns(:resource).should eq(resource)
+      expect(assigns(:resource)).to eq(resource)
     end
   end
 
@@ -41,29 +41,29 @@ describe ResourcesController do
 
       it "assigns a newly created resource as @resource" do
         post :create, {:resource => valid_attributes}
-        assigns(:resource).should be_a(Resource)
-        assigns(:resource).should be_persisted
+        expect(assigns(:resource)).to be_a(Resource)
+        expect(assigns(:resource)).to be_persisted
       end
 
       it "redirects to the created resource" do
         post :create, {:resource => valid_attributes}
-        response.should redirect_to(Resource.last)
+        expect(response).to redirect_to(Resource.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved resource as @resource" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Resource.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Resource).to receive(:save).and_return(false)
         post :create, {:resource => { title: "foo" }}
-        assigns(:resource).should be_a_new(Resource)
+        expect(assigns(:resource)).to be_a_new(Resource)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Resource.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Resource).to receive(:save).and_return(false)
         post :create, {:resource => { title: "foo" }}
-        response.should render_template("new")
+        expect(response).to render_template("new")
       end
     end
   end
@@ -77,20 +77,20 @@ describe ResourcesController do
         # specifies that the Resource created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Resource.any_instance.should_receive(:update_attributes).with({})
+        allow_any_instance_of(Resource).to receive(:update_attributes).with({})
         patch :update, {:id => resource.to_param, :resource => { "these" => "params" }}, valid_session
       end
 
       it "assigns the requested resource as @resource" do
         resource = Resource.create! valid_attributes
         patch :update, {:id => resource.to_param, :resource => valid_attributes}, valid_session
-        assigns(:resource).should eq(resource)
+        expect(assigns(:resource)).to eq(resource)
       end
 
       it "redirects to the resource" do
         resource = Resource.create! valid_attributes
         patch :update, {:id => resource.to_param, :resource => valid_attributes}, valid_session
-        response.should redirect_to(resource)
+        expect(response).to redirect_to(resource)
       end
     end
 
@@ -98,17 +98,17 @@ describe ResourcesController do
       it "assigns the resource as @resource" do
         resource = Resource.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Resource.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Resource).to receive(:save).and_return(false)
         patch :update, {:id => resource.to_param, :resource => { title: "" }}, valid_session
-        assigns(:resource).should eq(resource)
+        expect(assigns(:resource)).to eq(resource)
       end
 
       it "re-renders the 'edit' template" do
         resource = Resource.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Resource.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Resource).to receive(:save).and_return(false)
         patch :update, {:id => resource.to_param, :resource => { title: "" }}, valid_session
-        response.should render_template("edit")
+        expect(response).to render_template("edit")
       end
     end
   end
@@ -128,7 +128,7 @@ describe ResourcesController do
     it "redirects to the resources list" do
       resource = Resource.create! valid_attributes
       delete :destroy, {:id => resource.to_param}, valid_session
-      response.should redirect_to("I'm a little teapot")
+      expect(response).to redirect_to("I'm a little teapot")
     end
   end
 
