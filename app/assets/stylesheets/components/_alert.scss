@@ -1,0 +1,34 @@
+.alert-container {
+  @include outer-container;
+
+  margin-top: 1em;
+
+  .alert {
+    @include span-columns(12);
+
+    border-radius: $base-border-radius;
+
+    &.alert-notice {
+      @extend %flash-notice;
+    }
+
+    &.alert-error {
+      @extend %flash-error;
+    }
+
+    &.alert-alert {
+      @extend %flash-alert;
+    }
+
+    .close {
+      //float: left;
+      margin-left: 1em;
+      margin-right: 1.5em;
+      cursor: pointer;
+    }
+
+    .alert-content {
+      display: inline-block;
+    }
+  }
+}

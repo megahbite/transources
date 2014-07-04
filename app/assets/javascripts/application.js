@@ -15,13 +15,15 @@
 //= require underscore
 //= require select2
 //= require dataTables/jquery.dataTables
-//= require dataTables/extras/TableTools
+//= require dataTables/extras/dataTables.tableTools
 //= require dataTables/extras/ZeroClipboard
 //= require jquery.raty
 
 //= require handlebars.runtime
 //= require_tree ./templates
 
+//= require navigation_bar
+//= require alert
 //= require resource_rating
 
 $(function() {

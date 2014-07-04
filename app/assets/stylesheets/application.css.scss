@@ -13,32 +13,32 @@
 
 // Framework
 @import "bourbon";
-@import "base/base";
+@import "base";
 @import "neat";
 
 // Plugins
 @import "select2";
-@import "dataTables/extras/TableTools";
+@import "dataTables/extras/dataTables.tableTools";
 @import "dataTables/extras/TableTools_JUI";
 
-@import "comment";
-@import "home";
-@import "resources";
+// Components
 
-@import "mixins";
+@import "components/navigation_bar";
+@import "components/alert";
+@import "components/content";
 
 .select2-container {
   display: block;
   margin-bottom: 10px;
 
   .select2-choices {
-    @include border-radius(4px);
+    border-radius: $base-border-radius;
   }
 
   &.select2-dropdown-open {
     .select2-choices {
-      @include border-bottom-left-radius(0px);
-      @include border-bottom-right-radius(0px);
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
     }
   }
 }
