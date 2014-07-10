@@ -3,12 +3,17 @@
     %a.logo{href: url_for(root_path)}
       = image_tag "logo.png", height: "60px"
 
-    %p#js-mobile-menu.navigation-menu-button
-      MENU
+    %button#js-mobile-menu.navigation-menu-button
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
     .nav
       %ul#navigation-menu
         %li.nav-link.more
-          = link_to t('resources.description'), resources_path
+          %a{href: url_for(resources_path)}
+            = t('resources.description')
+            %b.caret
+
           %ul.submenu
             %li
               = link_to t('common.actions.search'), resources_path

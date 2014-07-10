@@ -39,6 +39,17 @@ header.navigation {
     }
   }
 
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+  }
+
   .navigation-menu-button {
     color: $navigation-color;
     cursor: pointer;
@@ -47,9 +58,12 @@ header.navigation {
     font-family: $sans-serif;
     font-weight: 700;
     line-height: $navigation-height;
-    margin: 0;
-    padding-right: 1em;
+    margin: 13px 1em 0 0;
+    padding: 0.5em;
     text-transform: uppercase;
+    border: 1px solid $medium-gray;
+    border-radius: $base-border-radius;
+    background-color: transparent;
 
     @include media ($horizontal-bar-mode) {
       display: none;
@@ -57,6 +71,18 @@ header.navigation {
 
     &:hover {
       color: $navigation-color-hover;
+    }
+
+    .icon-bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 1px;
+      background-color: $medium-gray;
+    }
+
+    .icon-bar+.icon-bar {
+      margin-top: 4px;
     }
   }
 
