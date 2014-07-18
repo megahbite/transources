@@ -13,7 +13,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @resource }
+      format.json { render json: @resource, include: { scores: { only: :value } } }
     end
   end
 
@@ -83,7 +83,7 @@ class ResourcesController < ApplicationController
 
     @resources = @resources.tagged_with(params[:categories], any: true) unless params[:categories].blank?
 
-    render json: @resources.to_json(include: :categories), status: :ok
+    render json: @resources.to_json(include: [:categories, :scores]), status: :ok
   end
 
   def search_all
@@ -122,7 +122,9 @@ class ResourcesController < ApplicationController
   end
 
   def score
-    Score.create(value: params[:score], resource_id: params[:id], user_id: current_user.id)
+    @score = Score.find_or_initialize_by(resource_id: params[:id], user_id: current_user.id)
+    @score.value = params[:score]
+    @score.save
     render nothing: true
   end
 

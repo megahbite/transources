@@ -68,7 +68,7 @@ $(->
 
   # Manage Resource
 
-  $('.resource_description').popover()
+  #$('.resource_description').popover() #FIXME: Find a replacement for Bootstrap popovers
 
   $('#resources_table').dataTable
     sPaginationType: "bootstrap"

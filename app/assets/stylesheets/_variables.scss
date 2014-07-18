@@ -20,12 +20,24 @@ $light-red: #FBE3E4;
 $light-yellow: #FFF6BF;
 $light-green: #E6EFC2;
 
+$primary-color-very-light: #AEC1FF;
+$primary-color-light: #809EFF;
+$primary-color: #1D52FF;
+$primary-color-medium: #002293;
+$primary-color-dark: #001A71;
+
+$secondary-color-very-light: #C5ADFF;
+$secondary-color-light: #A47FFF;
+$secondary-color: #5D1BFF;
+$secondary-color-medium: #2B0095;
+$secondary-color-dark: #210072;
+
 // Background Color
 $base-background-color: white;
 
 // Font Colors
 $base-font-color: $dark-gray;
-$base-accent-color: $blue;
+$base-accent-color: $primary-color-light;
 
 // Link Colors
 $base-link-color: $base-accent-color;

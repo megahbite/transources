@@ -3,7 +3,9 @@
     %a{href:'/resources/{{id}}'}
       %strong
         {{title}}
-    %br
+  %p
+    .resource-rating-show{data: {score: "{{score}}"}}
+  %p
     %small
       Categories:
       {{#categories}}

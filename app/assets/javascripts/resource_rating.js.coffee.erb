@@ -9,12 +9,16 @@ $(->
     score: -> $(this).data("score")
     click: ->
       $.post($(this).data('submitPath'), score: $('input[name=score]', this).val())
-  $('.resource-rating-show').raty
-    half: true
-    path: null
-    starOn: "<%= asset_path('star-on.png') %>"
-    starOff: "<%= asset_path('star-off.png') %>"
-    starHalf: "<%= asset_path('star-half.png') %>"
-    score: -> $(this).data("score")
-    readOnly: true
+
+  $(document).on 'update-score', '.resource-rating-show', (e) ->
+    $(e.currentTarget).raty
+      half: true
+      path: null
+      starOn: "<%= asset_path('star-on.png') %>"
+      starOff: "<%= asset_path('star-off.png') %>"
+      starHalf: "<%= asset_path('star-half.png') %>"
+      score: -> $(this).data("score")
+      readOnly: true
+
+  $('.resource-rating-show').trigger('update-score')
 )

@@ -38,11 +38,21 @@ $(->
   )
 
   ShowAlert = (message) ->
-    $('#alert').html(HandlebarsTemplates['resources/alert']({ message: message }))
+    $('.js-alert').html(HandlebarsTemplates['resources/alert']({ message: message }))
 
   ShowInfoWindow = (map, marker, infoWindow) ->
     ->
       infoWindow.open(map, marker)
+
+  CalculateScore = (resource) ->
+    m = 3
+    c = 5
+    n = resource.scores.length
+    sum = resource.scores.reduce((s, i) ->
+      s + Number(i.value)
+    , 0)
+
+    ((c * m) + sum) / (c + n)
 
   ShowSearchResults = (center, radius, resources) ->
 
@@ -55,7 +65,7 @@ $(->
       streetViewControl: false
     }
 
-    map = new google.maps.Map($(".results-map")[0], mapOptions)
+    map = new google.maps.Map($(".js-results-map")[0], mapOptions)
 
     circleOptions = {
       map: map,
@@ -87,8 +97,11 @@ $(->
           title: r.title
         })
 
+      r.score = CalculateScore(r)
+
       google.maps.event.addListener(m, 'click', ShowInfoWindow(map, m, w))
 
       $(".results-list").append(HandlebarsTemplates['resources/result'](r))
+      $('.resource-rating-show').trigger('update-score')
 
 )

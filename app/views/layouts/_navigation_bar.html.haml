@@ -23,17 +23,20 @@
           %li.nav-link.more
             %a{href: '#'}
               = t('admin.admin')
+              %b.caret
+
             %ul.submenu
               %li
                 = link_to t('comments.manage'), manage_comments_path
               %li
                 = link_to t('resources.manage'), manage_resources_path
-    .navigation-tools
-      - if user_signed_in?
-        = link_to t('sessions.logout'), destroy_user_session_path, method: :delete, class: "sign-up"
-      - else
-        = link_to t('sessions.login'), new_user_session_path, class: "sign-up"
-      - if user_signed_in?
-        = link_to t('registrations.edit'), edit_user_registration_path, class: "sign-up"
-      - else
-        = link_to t('registrations.new'), new_user_registration_path, class: "sign-up"
+        %li.nav-link
+          - if user_signed_in?
+            = link_to t('sessions.logout'), destroy_user_session_path, method: :delete
+          - else
+            = link_to t('sessions.login'), new_user_session_path
+        %li.nav-link
+          - if user_signed_in?
+            = link_to t('registrations.edit'), edit_user_registration_path
+          - else
+            = link_to t('registrations.new'), new_user_registration_path

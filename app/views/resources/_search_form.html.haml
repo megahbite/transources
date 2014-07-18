@@ -1,35 +1,29 @@
 = javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GMAPS_API_KEY']}&sensor=false"
 
-#alert
+.js-alert.alert-container
 
-.row
-  .col-xs-6
+.search-form
+  .form-container
     %h3= t('common.actions.search')
     = form_tag search_resources_path, method: :post, remote: true do
-      .row.form-group
-        .col-xs-12
-          %p.form-control-static= t('resources.search_prompt')
-      .row.form-group
-        .col-xs-12
-          = label_tag 'categories', t('resources.categories'), class: 'sr-only'
-          = select_tag 'categories', options_from_collection_for_select(categories, "name", "name"), multiple: true, style: "display: block;"
-      .row.form-group
-        .col-xs-12.col-md-5
-          = label_tag 'location', t('resources.location.description'), class: 'sr-only'
-          .input-group
-            %span.input-group-addon= t('resources.location.prepend')
-            = text_field_tag 'location', nil, class: "form-control js-location-autocomplete"
-        .col-xs-12.col-md-5
-          = label_tag 'radius', t('resources.radius.description'), class: 'sr-only'
-          .input-group
-            %span.input-group-addon= t('resources.radius.prepend')
-            = number_field_tag 'radius', 20, min: 1, class: "form-control"
-            %span.input-group-addon= t('resources.radius.append')
-        .col-xs-12.col-md-2
-          = button_tag "Search", class: "btn btn-primary js-location-search", type: "button", data: { "loading-text" => t('resources.searching') }
+      %p= t('resources.search_prompt')
+      .categories
+        = label_tag 'categories', t('resources.categories'), class: 'sr-only'
+        = select_tag 'categories', options_from_collection_for_select(categories, "name", "name"), multiple: true, style: "display: block;"
+      .location.input-group
+        = label_tag 'location', t('resources.location.description'), class: 'sr-only'
+        %span.prefix= t('resources.location.prepend')
+        = text_field_tag 'location', nil, class: "js-location-autocomplete"
+      .radius.input-group
+        = label_tag 'radius', t('resources.radius.description'), class: 'sr-only'
+        %span.prefix= t('resources.radius.prepend')
+        = number_field_tag 'radius', 20, min: 1
+        %span.suffix= t('resources.radius.append')
+      .action
+        = button_tag "Search", class: "js-location-search", type: "button", data: { "loading-text" => t('resources.searching') }
 
-.row
-  .col-md-6.col-xs-12
-    .results-map
-  .col-md-6.col-xs-12
-    %ul.results-list.list-unstyled
+  .results-container
+    .map-container
+      .js-results-map.results-map
+    .results-list-container
+      %ul.results-list.list-unstyled

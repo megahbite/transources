@@ -59,7 +59,7 @@ $(->
         },
       ]
 
-  $('.comment_text').popover()
+  # $('.comment_text').popover() #TODO: Replace this with something
 
   $('.select2').each (i, e) ->
     select = $(e)
