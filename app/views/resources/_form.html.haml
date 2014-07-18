@@ -5,20 +5,18 @@
 = simple_form_for(@resource, html: { class: 'edit_resource' }) do |f|
   = f.error_notification
 
-  .form-inputs.row
-    .col-md-6.col-xs-12
-      = f.input :title
-      = f.input :description, input_html: { rows: 5, cols: 40 }
-      = f.input :category_list
-    .col-md-6.col-xs-12
-      = f.input :address_line_1
-      = f.input :address_line_2
-      = f.input :town
-      = f.input :country
-      = f.input :lat, as: :hidden
-      = f.input :long, as: :hidden
+  .left-column
+    = f.input :title
+    = f.input :description, input_html: { rows: 5, cols: 40 }
+    = f.input :category_list
+  .right-column
+    = f.input :address_line_1
+    = f.input :address_line_2
+    = f.input :town
+    = f.input :country
+    = f.input :lat, as: :hidden
+    = f.input :long, as: :hidden
 
 
-  .form-actions.row
-    .col-xs-12
-      = f.button :submit, onclick: 'return GetLatLong();', class: "btn btn-primary"
+  .actions
+    = f.button :submit, onclick: 'return GetLatLong();', class: "btn btn-primary"
