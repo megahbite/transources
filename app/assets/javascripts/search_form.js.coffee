@@ -69,7 +69,6 @@ $(->
 
   if $(".js-results-map").length > 0
     for map in $('.js-results-map')
-      debugger
       center = new google.maps.LatLng $(map).data('lat'), $(map).data('lng')
 
       mapOptions =

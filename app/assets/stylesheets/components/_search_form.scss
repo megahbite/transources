@@ -72,7 +72,8 @@
       @include span-columns(6);
 
       @include media($mobile) {
-        @include span-columns(8);
+         @include span-columns(12);
+         @include omega();
       }
 
       .results-map {
@@ -80,8 +81,12 @@
         height: 400px;
         margin: 10px 0;
 
+        @include media($mobile) {
+          height: 200px;
+        }
+
         img {
-          max-width: none; //Fix for display bug with "max-width: 100% in GMaps"
+          max-width: none; //Fix for display bug with "max-width: 100%" in GMaps
         }
       }
     }
@@ -90,7 +95,18 @@
       @include span-columns(6);
 
       @include media($mobile) {
+         @include span-columns(12);
+         @include omega();
+      }
+
+      .result {
         @include span-columns(4);
+        @include omega(3n);
+
+        @include media($tablet) {
+          @include span-columns(6);
+          @include omega(2n);
+        }
       }
     }
   }

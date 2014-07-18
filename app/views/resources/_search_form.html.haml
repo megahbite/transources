@@ -26,18 +26,17 @@
       .map-container
         .js-results-map.results-map{data: {lat: params[:lat], lng: params[:lng], radius: params[:radius]}}
       .results-list-container
-        %ul.results-list.list-unstyled
-          - @resources.each do |r|
-            %li
-              %p
-                = link_to r do
-                  %strong
-                    = r.title
-              %p
-                .resource-rating-show{data: {score: r.score}}
-              %p
-                %small
-                  Categories:
-                  - r.categories.each do |c|
-                    %a{href:"/resources/tag/#{c.name}"}
-                      = c.name
+        - @resources.each do |r|
+          .result
+            %p
+              = link_to r do
+                %strong
+                  = r.title
+            %p
+              .resource-rating-show{data: {score: r.score}}
+            %p
+              %small
+                Categories:
+                - r.categories.each do |c|
+                  %a{href:"/resources/tag/#{c.name}"}
+                    = c.name
