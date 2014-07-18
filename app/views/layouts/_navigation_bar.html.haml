@@ -16,7 +16,7 @@
 
           %ul.submenu
             %li
-              = link_to t('common.actions.search'), resources_path
+              = link_to t('common.actions.search'), search_resources_path
             %li
               = link_to t('common.actions.new'), new_resource_path
         - if user_signed_in? && current_user.has_role?(:admin)

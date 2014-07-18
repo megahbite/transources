@@ -76,14 +76,23 @@ class ResourcesController < ApplicationController
 
   def search
     #byebug
-    @resources = Resource.all
+    @categories = ActsAsTaggableOn::Tag
+    .includes(:taggings)
+    .where(taggings: { context: 'categories' })
+    .distinct
+
+    @resources = nil
+
     if params[:lat] and params[:lng]
-      @resources = @resources.where("ST_DWithin(longlat, ST_GeographyFromText('SRID=4326;POINT(#{params[:lng]} #{params[:lat]})'), #{params[:radius].to_i * 1000})")
+      @resources = Resource.all.where("ST_DWithin(longlat, ST_GeographyFromText('SRID=4326;POINT(#{params[:lng]} #{params[:lat]})'), #{params[:radius].to_i * 1000})")
+      @resources = @resources.tagged_with(params[:categories], any: true) unless params[:categories].blank?
+      @resources = @resources.decorate
     end
 
-    @resources = @resources.tagged_with(params[:categories], any: true) unless params[:categories].blank?
-
-    render json: @resources.to_json(include: [:categories, :scores]), status: :ok
+    respond_to do |format|
+      format.html
+      format.json { render json: @resources.to_json(include: [:categories, :scores]), status: :ok }
+    end
   end
 
   def search_all
