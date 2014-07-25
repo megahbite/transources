@@ -1,0 +1,41 @@
+.admin-table {
+  @include pad(default 2em default 2em);
+  @include row( block, RTL );
+
+  .filter-container {
+    @include span-columns(3);
+
+    @include media($mobile) {
+      @include span-columns(12);
+      @include omega();
+    }
+  }
+
+  .table-header {
+    @include span-columns(9);
+    @include omega();
+
+    @include pad( 120px 0 0 0 );
+
+    @include media($mobile) {
+      @include span-columns(12);
+      @include pad( default );
+    }
+
+    .clearfix {
+      @include clearfix;
+    }
+
+    .dataTables_length, .dataTables_filter, select {
+      display: inline-block;
+    }
+
+    .dataTables_filter {
+      margin-left: 2em;
+    }
+  }
+
+  .table-content {
+    @include span-columns(12);
+  }
+}

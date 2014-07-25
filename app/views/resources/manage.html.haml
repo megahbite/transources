@@ -1,5 +1,5 @@
-.row
-  .col-xs-12.col-sm-3.pull-right
+.admin-table
+  .filter-container
     %h3= t('resources.filter')
     %p
       = form_tag manage_resources_path, method: :get, class: "form" do
@@ -8,8 +8,8 @@
           = select_tag :categories, options_from_collection_for_select(@categories, "name", "name", params[:categories]), multiple: true, style: "display: block;"
         = submit_tag t('common.actions.filter'), class: "btn btn-default"
 
-  .col-xs-12.col-sm-9
-    %table.table.table-bordered#resources_table
+  .table-container
+    %table#resources_table
       %thead
         %tr
           %th= t('resources.attributes.title')
@@ -22,14 +22,25 @@
         - @resources.each do |r|
           %tr
             %td= r.title
-            %td.resource_description{data: {content: r.description, trigger: 'hover', placement: 'bottom', container: 'body'}}
-              = truncate(r.description, length: 20)
+            %td
+              - if r.description.length > 20
+                .tooltip-item
+                  = truncate(r.description, length: 20)
+                  .tooltip
+                    = r.description
+              - else
+                = r.description
             %td= r.address('<br>')
-            %td= r.categories_list
+            %td
+              - if r.categories_list.length > 20
+                .tooltip-item
+                  = truncate(r.categories_list, length: 20)
+                  .tooltip
+                    = r.categories_list
+              - else
+                = r.categories_list
             %td= r.created_at
             %td
-              .dropdown
-                %a.js-dropdown{id: "#{r.id}_dropdown", data: {toggle: "dropdown"}, href: "#"}= t('common.actions.description')
-                %ul.dropdown-menu{role: "menu", aria: {labelledby: "#{r.id}_dropdown"}}
-                  %li= link_to t('common.actions.edit'), edit_resource_path(r)
-                  %li= link_to t('common.actions.delete'), r, method: "delete", confirm: "Are you sure?"
+              %ul
+                %li= link_to t('common.actions.edit'), edit_resource_path(r)
+                %li= link_to t('common.actions.delete'), r, method: "delete", confirm: "Are you sure?"

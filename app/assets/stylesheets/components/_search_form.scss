@@ -1,7 +1,5 @@
 .search-form {
-
-  padding-left: 2em;
-  padding-right: 2em;
+  @include pad(default 2em default 2em);
 
   .form-container {
     text-align: center;

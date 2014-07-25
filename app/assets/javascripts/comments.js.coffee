@@ -4,16 +4,9 @@
 
 $(->
   $('#comments_table').dataTable
-    sPaginationType: "bootstrap"
-    sDom: 'T<"clearfix"><""l"F"f>t<p>'
+    sDom: '<"table-header"T<"clearfix"><""l"F"f>><"table-content"t<"pagination"p>>'
     oLanguage:
       sSearch: ""
-    fnPreDrawCallback: ->
-      $('.dataTables_filter input').addClass 'form-control input-sm'
-      $('.dataTables_filter input').css 'width', '200px'
-      $('.dataTables_filter input').attr 'placeholder', 'Search'
-      $('.dataTables_length select').addClass 'form-control input-sm'
-      $('.dataTables_length select').css 'width', '75px'
     oTableTools:
       sRowSelect: "multi"
       aButtons: [

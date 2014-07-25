@@ -49,6 +49,9 @@ en:
     filter: "Filter comments"
     manage: "Manage comments"
 
+  admin:
+    admin: "Admin"
+
   common:
     attributes:
       created_at: "Created At"
