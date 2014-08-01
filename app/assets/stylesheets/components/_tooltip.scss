@@ -7,11 +7,7 @@
   $tooltip-distance-from-item: 140%;
   $tooltip-arrow-distance-from-box: -$tooltip-arrow-width * 3.4;
 
-  // border: 1px solid $base-border-color;
-  // padding: .5em 1em;
-  // border-radius: $base-border-radius;
   position: relative;
-  // margin-bottom: $base-line-height;
 
   &:hover .tooltip {
     opacity: 1;
