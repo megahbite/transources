@@ -2,3 +2,30 @@
   @include span-columns(12);
   @include omega();
 }
+
+.choice-container {
+  @include span-columns(12);
+  @include omega();
+
+  %choice-column {
+    @include span-columns(6);
+    text-align: center;
+    height: 200px;
+    border: 3px solid $base-border-color;
+    border-radius: 3px;
+    margin-top: $gutter;
+  }
+
+  .left-column {
+    @extend %choice-column;
+  }
+
+  .right-column {
+    @extend %choice-column;
+
+  }
+
+  h3 {
+    @include pad( 30px default );
+  }
+}

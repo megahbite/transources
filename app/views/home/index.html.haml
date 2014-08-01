@@ -4,3 +4,11 @@
       .hero-copy
         %h1= t('common.hero-title')
         %p= t('common.hero-content')
+.choice-container
+  .left-column
+    %h3 I want to search for resources
+    %a.button{href: search_resources_path} Search Now
+
+  .right-column
+    %h3 I want to add a new resource
+    %a.button{href: new_resource_path} Add Now
