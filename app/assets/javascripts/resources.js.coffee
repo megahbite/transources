@@ -48,7 +48,8 @@ $(->
   # Show Resource
 
   $('.map').each (i, e) ->
-    latLng = new google.maps.LatLng($(e).attr('data-lat'), $(e).attr('data-long'))
+    debugger
+    latLng = new google.maps.LatLng($(e).data('lat'), $(e).data('long'))
 
     mapOptions = {
       center: latLng,
