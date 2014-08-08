@@ -76,3 +76,4 @@ en:
     terms: "Terms and Conditions"
     privacy: "Privacy Policy"
     contribute: "Contribute to development on GitHub"
+    delete_prompt: "Are you sure?"

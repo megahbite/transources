@@ -1,0 +1,23 @@
+.comments-container {
+  .comments {
+    max-height: 311px;
+    overflow: scroll;
+    margin: 1em;
+  }
+
+  .well {
+    @include pad( 1em );
+    border-radius: 10px;
+    margin-bottom: 0.5em;
+
+    &:nth-child(odd) {
+      background-color: transparentize($primary-color-very-light, 0.5);
+    }
+
+    &:nth-child(even) {
+      background-color: transparentize($secondary-color-very-light, 0.5);
+    }
+  }
+
+
+}

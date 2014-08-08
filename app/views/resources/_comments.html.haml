@@ -1,36 +1,32 @@
-%h4= t('comments.description')
-- if @resource.comments.empty?
-  .no-comments
-    %p= t('comments.none')
-- else
-  .comments
-    - @resource.comments.each do |c|
-      -unless c.spam and request.remote_ip != c.user_ip
-        .comment.well
-          .body
-            = c.text
-          .info
-            %small
-              - if c.user
-                = c.user.name
-              - else
-                = t('common.anonymous')
-              &middot;
-              = c.created_at
-          - if policy(c).destroy?
-            .actions
-              = form_tag resource_comment_path(@resource, c), method: :delete do
-                = submit_tag t('common.actions.delete'), class: "btn btn-link btn-xs"
+.comments-container
+  %h4= t('comments.description')
+  - if @resource.comments.empty?
+    .no-comments
+      %p= t('comments.none')
+  - else
+    .comments
+      - @resource.comments.each do |c|
+        -unless c.spam and request.remote_ip != c.user_ip
+          .comment.well
+            .body
+              = c.text
+            .info
+              %small
+                - if c.user
+                  = c.user.name
+                - else
+                  = t('common.anonymous')
+                &middot;
+                = c.created_at
+            - if policy(c).destroy?
+              .actions
+                = link_to t('common.actions.delete'), resource_comment_path(@resource, c), method: :delete, data: { confirm: t('common.delete_prompt') }
 
+  = simple_form_for([@resource, Comment.new()]) do |f|
+    = f.error_notification
 
-= simple_form_for([@resource, Comment.new()], html: { class: "form-horizontal" }) do |f|
-  = f.error_notification
-
-  .form-group
-    .col-xs-12
-      = f.input_field :text, style: "width: 100%;", rows: 5
-  .checkbox
+    = f.input_field :text, style: "width: 100%;", rows: 5
     %label
       = f.check_box :anonymous
       = t('comments.anonymous_prompt')
-  = f.button :submit, class: "btn btn-primary"
+    = f.button :submit
