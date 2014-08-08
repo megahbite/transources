@@ -1,0 +1,42 @@
+.hero-container {
+  @include span-columns(12);
+  @include omega();
+}
+
+.choice-container {
+  @include span-columns(12);
+  @include omega();
+
+  %choice-column {
+    @include span-columns(6);
+    text-align: center;
+    border: 3px solid $base-border-color;
+    border-radius: 3px;
+    margin-top: $gutter;
+
+    .button {
+      margin-bottom: 30px;
+    }
+  }
+
+  .left-column {
+    @extend %choice-column;
+    border-color: $primary-color-light;
+  }
+
+  .right-column {
+    @extend %choice-column;
+    border-color: $secondary-color-very-light;
+
+    .button {
+      background-color: $secondary-color-very-light;
+      &:hover {
+        background-color: darken($secondary-color-very-light, 15);
+      }
+    }
+  }
+
+  h3 {
+    @include pad( 30px default );
+  }
+}

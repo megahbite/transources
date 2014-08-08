@@ -13,17 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore
-//= require bootstrap
 //= require select2
 //= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap3
-//= require dataTables/extras/TableTools
+//= require dataTables/extras/dataTables.tableTools
 //= require dataTables/extras/ZeroClipboard
 //= require jquery.raty
 
 //= require handlebars.runtime
 //= require_tree ./templates
 
+//= require navigation_bar
+//= require alert
 //= require resource_rating
 
 $(function() {

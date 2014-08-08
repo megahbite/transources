@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CommentsController do
 
@@ -32,15 +32,15 @@ describe CommentsController do
       it "assigns a newly created comment as @comment" do
         sign_in user
         post :create, { resource_id: resource.id, comment: valid_attributes }
-        assigns(:comment).should be_a(Comment)
-        assigns(:comment).should be_persisted
+        expect(assigns(:comment)).to be_a(Comment)
+        expect(assigns(:comment)).to be_persisted
       end
 
       it "marks as spam any spam comments" do
         sign_in spam_user
         post :create, { resource_id: resource.id, comment: valid_attributes }
 
-        expect(assigns(:comment).spam).to be_true
+        expect(assigns(:comment).spam).to be_truthy
       end
     end
   end
@@ -77,7 +77,7 @@ describe CommentsController do
 
   describe "GET ham" do
     before(:each) do
-      request.env["HTTP_REFERER"] = "I'm a little teapot"
+      @request.env["HTTP_REFERER"] = "I'm a little teapot"
     end
     it "changes the comments status to not spam" do
       sign_in admin_user
@@ -85,7 +85,7 @@ describe CommentsController do
       comment.save!
       get :ham, {ids: [comment.id]}
       comment.reload
-      expect(comment.spam).to be_false
+      expect(comment.spam).to be_falsey
     end
 
     context "regular user" do
@@ -100,7 +100,7 @@ describe CommentsController do
 
   describe "GET spam" do
     before(:each) do
-      request.env["HTTP_REFERER"] = "I'm a little teapot"
+      @request.env["HTTP_REFERER"] = "I'm a little teapot"
     end
     it "changes the comments status to spam" do
       sign_in admin_user
@@ -108,7 +108,7 @@ describe CommentsController do
       comment.save!
       get :spam, {ids: [comment.id]}
       comment.reload
-      expect(comment.spam).to be_true
+      expect(comment.spam).to be_truthy
     end
 
     context "regular user" do

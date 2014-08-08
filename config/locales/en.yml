@@ -49,6 +49,9 @@ en:
     filter: "Filter comments"
     manage: "Manage comments"
 
+  admin:
+    admin: "Admin"
+
   common:
     attributes:
       created_at: "Created At"
@@ -65,3 +68,6 @@ en:
       unban_ip: "Unban IP"
     anonymous: "Anonymous"
     rate: "Rate"
+    hero-title: "Crowdsourced Information for the Trans Community"
+    hero-content: "Need help finding local trans friendly resources or want to
+    contribute ones you have discovered? This is the site for you."

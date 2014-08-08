@@ -48,7 +48,8 @@ $(->
   # Show Resource
 
   $('.map').each (i, e) ->
-    latLng = new google.maps.LatLng($(e).attr('data-lat'), $(e).attr('data-long'))
+    debugger
+    latLng = new google.maps.LatLng($(e).data('lat'), $(e).data('long'))
 
     mapOptions = {
       center: latLng,
@@ -68,17 +69,10 @@ $(->
 
   # Manage Resource
 
-  $('.resource_description').popover()
+  #$('.resource_description').popover() #FIXME: Find a replacement for Bootstrap popovers
 
   $('#resources_table').dataTable
-    sPaginationType: "bootstrap"
-    sDom: '<""l"F"f>t<p>'
+    sDom: '<"table-header"l"F"f><"table-content"t<"pagination"p>>'
     oLanguage:
       sSearch: ""
-    fnPreDrawCallback: ->
-      $('.dataTables_filter input').addClass 'form-control input-sm'
-      $('.dataTables_filter input').css 'width', '200px'
-      $('.dataTables_filter input').attr 'placeholder', 'Search'
-      $('.dataTables_length select').addClass 'form-control input-sm'
-      $('.dataTables_length select').css 'width', '75px'
 )

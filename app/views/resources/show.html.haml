@@ -1,31 +1,24 @@
 = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GMAPS_API_KEY']}&sensor=false"
 
-.row
-  .col-md-6.col-xs-12
+.resource-container
+  .left-column
     %h1
       = @resource.title
     %p.lead= @resource.description
-    .row
-      .col-xs-12
-        .resource-rating-show{data: {score: @resource.score}}
-    .row
-      .col-xs-6
-        %p
-          %strong= "#{t('resources.categories')}:"
-          = @resource.categories_list
+    .resource-rating-show{data: {score: @resource.score}}
+    %p
+      %strong= "#{t('resources.categories')}:"
+      = @resource.categories_list
 
-        %p!= @resource.address("<br>")
-      .col-xs-6
-        %a.btn.btn-default.btn-xs{href: url_for(edit_resource_path(@resource))}
-          %i.glyphicon.glyphicon-edit
-          = t('common.actions.edit')
+    %p= @resource.address("<br>")
+    %a.button{href: url_for(edit_resource_path(@resource))}
+      = t('common.actions.edit')
 
     .map{data: {lat: @resource.lat, long: @resource.long}}
 
-
-
-  .col-md-6.col-xs-12
-    %h4= t('common.rate')
-    .resource-rating-edit{data: {score: @resource.score_for(current_user), submit_path: score_resource_path(@resource)}}
+  .right-column
+    - if user_signed_in?
+      %h4= t('common.rate')
+      .resource-rating-edit{data: {score: @resource.score_for(current_user), submit_path: score_resource_path(@resource)}}
     -# Comments/Reviews
     = render "comments", locals: {resource: @resource}

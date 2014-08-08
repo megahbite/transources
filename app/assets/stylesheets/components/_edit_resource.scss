@@ -1,0 +1,25 @@
+.edit_resource {
+  @include pad(default 2em default 2em);
+
+  .left-column {
+    @include span-columns(6);
+
+    @include media($mobile) {
+      @include span-columns(12);
+      @include omega();
+    }
+  }
+
+  .right-column {
+    @include span-columns(6);
+    @include omega();
+
+    @include media($mobile) {
+      @include span-columns(12);
+    }
+  }
+
+  .actions {
+    @include span-columns(12);
+  }
+}

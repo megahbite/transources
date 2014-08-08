@@ -9,31 +9,55 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
 */
+@import "normalize";
 
-@import "bootstrap_and_overrides";
+// Framework
+@import "bourbon";
+@import "base";
+@import "neat";
+
+// Plugins
 @import "select2";
-@import "dataTables/jquery.dataTables.bootstrap3";
-@import "dataTables/extras/TableTools";
+@import "dataTables/extras/dataTables.tableTools";
 @import "dataTables/extras/TableTools_JUI";
 
-@import "comment";
-@import "home";
-@import "resources";
+// Components
 
-@import "mixins";
+@import "components/navigation_bar";
+@import "components/alert";
+@import "components/content";
+@import "components/search_form";
+@import "components/edit_resource";
+@import "components/admin_table";
+@import "components/pagination";
+@import "components/tooltip";
+@import "components/hero_unit";
+@import "components/front_page";
+@import "components/view_resource";
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
 
 .select2-container {
   display: block;
   margin-bottom: 10px;
 
   .select2-choices {
-    @include border-radius(4px);
+    border-radius: $base-border-radius;
   }
 
   &.select2-dropdown-open {
     .select2-choices {
-      @include border-bottom-left-radius(0px);
-      @include border-bottom-right-radius(0px);
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
     }
   }
 }

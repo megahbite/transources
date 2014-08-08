@@ -1,5 +1,5 @@
-.row
-  .col-xs-12.col-sm-3.pull-right
+.admin-table
+  .filter-container
     %h3= t('comments.filter')
     %p
       = form_tag manage_comments_path, method: :get, class: "form" do
@@ -14,8 +14,8 @@
           = select_tag :spam, options_for_select(["true", "false"], params[:spam]), prompt: "All"
         = submit_tag t('common.actions.filter'), class: "btn btn-default"
 
-  .col-xs-12.col-sm-9
-    %table.table.table-bordered#comments_table
+  .table-container
+    %table#comments_table
       %thead
         %tr
           %th= t('resources.description')
@@ -29,22 +29,22 @@
         - @comments.each do |c|
           %tr{data: {spam: c.spam, id: c.id}}
             %td= link_to c.resource.title, c.resource
-            %td.comment_text{data: {content: c.text, trigger: "hover", placement: "bottom", container: "body"}}
+            %td.tooltip-item
               = truncate(c.text, length: 20)
+              .tooltip
+                = c.text
             %td= c.user ? c.user.name : t('common.anonymous')
             %td= c.created_at
             %td= c.user_ip
             %td= c.spam
             %td
-              .dropdown
-                %a.js-dropdown{id: "#{c.id}_dropdown", data: {toggle: "dropdown"}, href: "#"}= t('common.actions.description')
-                %ul.dropdown-menu{role: "menu", aria: {labelledby: "#{c.id}_dropdown"}}
-                  %li= link_to t('common.actions.delete'), c, method: "delete", confirm: "Are you sure?"
-                  - if c.is_banned?
-                    %li= link_to t('common.actions.unban_ip'), banned_ip_path(c.banned_ip), method: "delete"
-                  - else
-                    %li= link_to t('common.actions.ban_ip'), banned_ips_path(banned_ip: {ip: c.user_ip}), method: "post"
-                  - if c.spam
-                    %li= link_to t('common.actions.ham'), ham_comments_path(ids: [c.to_param])
-                  - else
-                    %li= link_to t('common.actions.spam'), spam_comments_path(ids: [c.to_param])
+              %ul
+                %li= link_to t('common.actions.delete'), c, method: "delete", confirm: "Are you sure?"
+                - if c.is_banned?
+                  %li= link_to t('common.actions.unban_ip'), banned_ip_path(c.banned_ip), method: "delete"
+                - else
+                  %li= link_to t('common.actions.ban_ip'), banned_ips_path(banned_ip: {ip: c.user_ip}), method: "post"
+                - if c.spam
+                  %li= link_to t('common.actions.ham'), ham_comments_path(ids: [c.to_param])
+                - else
+                  %li= link_to t('common.actions.spam'), spam_comments_path(ids: [c.to_param])

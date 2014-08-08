@@ -1,7 +1,5 @@
 #Search form
 $(->
-  $('.js-location-search').button()
-
   $('.js-location-autocomplete').each ->
     new google.maps.places.Autocomplete(this)
 
@@ -9,7 +7,7 @@ $(->
     $('#alert-template span').remove)
 
   $(document).on('click', '.js-location-search', (e) ->
-    $(e.target).button('loading')
+    e.preventDefault()
     geocoder = new google.maps.Geocoder
 
     address = $('#location').val()
@@ -17,8 +15,7 @@ $(->
     geocoder.geocode {address: address}, (response, status) ->
 
       if status != google.maps.GeocoderStatus.OK
-        $(e.target).button('reset')
-        ShowAlert('Not a valid address!')
+        showAlert('Not a valid address!')
         return
 
       location = response[0].geometry.location
@@ -30,65 +27,69 @@ $(->
       categories = $('#categories').val()
       if categories
         for c in categories
-          params += "&categories[]=#{c}"
+          params += "&categories[]=#{encodeURIComponent(c)}"
 
-      $.getJSON("/resources/search", params, (data) ->
-        $(e.target).button('reset')
-        ShowSearchResults([location.lat(), location.lng()], $('#radius').val(), data))
+      window.location = "/resources/search?#{params}"
+      # $.getJSON("/resources/search", params, (data) ->
+      #   #$(e.target).button('reset')
+      #   ShowSearchResults([location.lat(), location.lng()], $('#radius').val(), data))
   )
 
-  ShowAlert = (message) ->
-    $('#alert').html(HandlebarsTemplates['resources/alert']({ message: message }))
+  showAlert = (message) ->
+    $('.js-alert').html(HandlebarsTemplates['resources/alert']({ message: message }))
 
-  ShowInfoWindow = (map, marker, infoWindow) ->
+  showInfoWindow = (map, marker, infoWindow) ->
     ->
       infoWindow.open(map, marker)
 
-  ShowSearchResults = (center, radius, resources) ->
+  CalculateScore = (resource) ->
+    m = 3
+    c = 5
+    n = resource.scores.length
+    sum = resource.scores.reduce((s, i) ->
+      s + Number(i.value)
+    , 0)
 
-    center = new google.maps.LatLng(center[0], center[1])
+    ((c * m) + sum) / (c + n)
 
-    mapOptions = {
-      center: center,
-      zoom: 10,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      streetViewControl: false
-    }
-
-    map = new google.maps.Map($(".results-map")[0], mapOptions)
-
-    circleOptions = {
-      map: map,
-      strokeColor: "#0000FF",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#0000FF",
-      fillOpacity: 0.35,
-      center: center,
-      radius: Math.floor(Number(radius) * 1000)
-    }
-
-    circle = new google.maps.Circle(circleOptions)
-
-    $(".results-list").empty()
-
-    if resources.length <= 0
-      ShowAlert('No results')
-      return
-
-    for r in resources
-      w = new google.maps.InfoWindow({
+  showMarkersCallback = (mapObj) ->
+    (data) ->
+      for r in data
+        w = new google.maps.InfoWindow(
           content: HandlebarsTemplates['resources/info_window'](r)
-        })
+        )
 
-      m = new google.maps.Marker({
-          map: map,
-          position: new google.maps.LatLng(r.lat, r.long),
+        m = new google.maps.Marker(
+          map: mapObj
+          position: new google.maps.LatLng(r.lat, r.long)
           title: r.title
-        })
+        )
 
-      google.maps.event.addListener(m, 'click', ShowInfoWindow(map, m, w))
+        google.maps.event.addListener(m, 'click', showInfoWindow(mapObj, m, w))
 
-      $(".results-list").append(HandlebarsTemplates['resources/result'](r))
+  if $(".js-results-map").length > 0
+    for map in $('.js-results-map')
+      center = new google.maps.LatLng $(map).data('lat'), $(map).data('lng')
 
+      mapOptions =
+        center: center
+        zoom: 10
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+        streetViewControl: false
+
+      mapObj = new google.maps.Map(map, mapOptions)
+
+      circleOptions =
+        map: mapObj
+        strokeColor: '#0000FF'
+        strokeOpacity: 0.8
+        strokeWeight: 2
+        fillColor: '#0000FF'
+        fillOpacity: 0.35
+        center: center
+        radius: Math.floor(Number($(map).data('radius')) * 1000)
+
+      circle = new google.maps.Circle(circleOptions)
+
+      $.getJSON "/resources/search", window.location.search.slice(1), showMarkersCallback(mapObj)
 )
