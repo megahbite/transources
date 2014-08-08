@@ -1,5 +1,4 @@
 .admin-table {
-  @include pad(default 2em default 2em);
   @include row( block, RTL );
 
   .filter-container {

@@ -1,6 +1,4 @@
 .search-form {
-  @include pad(default 2em default 2em);
-
   .form-container {
     text-align: center;
     @include shift(2);
@@ -65,6 +63,7 @@
 
   .results-container {
     @include span-columns(12);
+    @include omega();
 
     .map-container {
       @include span-columns(6);

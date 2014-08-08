@@ -12,9 +12,7 @@
   bottom: 0;
   left: 0;
 
-  @include media($large-screen) {
-    height: $footer-height;
-  }
+  @include clearfix;
 
   .footer-logo {
     margin-right: 1em;

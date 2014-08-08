@@ -48,7 +48,6 @@ $(->
   # Show Resource
 
   $('.map').each (i, e) ->
-    debugger
     latLng = new google.maps.LatLng($(e).data('lat'), $(e).data('long'))
 
     mapOptions = {

@@ -8,5 +8,7 @@
   }
   .content {
     @include span-columns(12);
+    @include pad( default 2em );
+    @include clearfix;
   }
 }

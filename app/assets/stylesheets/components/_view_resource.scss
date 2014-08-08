@@ -1,5 +1,4 @@
 .resource-container {
-  @include pad(default 2em);
   .left-column {
     @include span-columns(6);
 
