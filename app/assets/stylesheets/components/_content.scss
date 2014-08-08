@@ -1,5 +1,11 @@
 .content-container {
   @include outer-container;
+
+  padding-bottom: $footer-vertical-height;
+
+  @include media($large-screen) {
+    padding-bottom: $footer-height;
+  }
   .content {
     @include span-columns(12);
   }

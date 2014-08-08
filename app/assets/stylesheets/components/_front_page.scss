@@ -4,6 +4,7 @@
 }
 
 .choice-container {
+  @include pad(2em default);
   @include span-columns(12);
   @include omega();
 

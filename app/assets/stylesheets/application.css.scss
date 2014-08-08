@@ -16,6 +16,8 @@
 @import "base";
 @import "neat";
 
+@import "elements";
+
 // Plugins
 @import "select2";
 @import "dataTables/extras/dataTables.tableTools";
@@ -24,6 +26,7 @@
 // Components
 
 @import "components/navigation_bar";
+@import "components/footer";
 @import "components/alert";
 @import "components/content";
 @import "components/search_form";
@@ -60,5 +63,10 @@
       border-bottom-right-radius: 0px;
     }
   }
+}
+
+.page-container {
+  min-height: 100%;
+  position: relative;
 }
 

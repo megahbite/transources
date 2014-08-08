@@ -1,0 +1,18 @@
+%footer.footer
+  %ul
+    %li
+      = link_to t('common.about'), about_path
+    %li
+      = link_to t('common.contact'), contact_path
+
+  .footer-secondary-links
+    %ul
+      %li
+        = link_to t('common.terms'), terms_path
+      %li
+        = link_to t('common.privacy'), privacy_path
+
+    %ul.footer-social
+      %li
+        %a{href: "https://github.com/megahbite/transources"}
+          %img{src: image_url('GitHub-Mark-Light-32px.png'), alt: t('common.contribute'), title: t('common.contribute')}

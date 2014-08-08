@@ -25,6 +25,12 @@ Transources::Application.routes.draw do
 
   resources :banned_ips, only: [:create, :destroy]
 
-  root :to => "home#index"
+  root to: "home#index"
+
+  get 'about', to: 'home#about'
+  get 'contact', to: 'home#contact'
+  get 'privacy', to: 'home#privacy'
+  get 'terms', to: 'home#terms'
+
   devise_for :users
 end
