@@ -10,8 +10,6 @@
   %choice-column {
     @include span-columns(6);
     text-align: center;
-    border: 3px solid $base-border-color;
-    border-radius: 3px;
     margin-top: $gutter;
 
     .button {
@@ -21,12 +19,10 @@
 
   .left-column {
     @extend %choice-column;
-    border-color: $primary-color-light;
   }
 
   .right-column {
     @extend %choice-column;
-    border-color: $secondary-color-very-light;
 
     .button {
       background-color: $secondary-color-very-light;

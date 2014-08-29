@@ -19,5 +19,11 @@
 
   .actions {
     @include span-columns(12);
+    .button {
+      background-color: $secondary-color-very-light;
+      &:hover {
+        background-color: darken($secondary-color-very-light, 15);
+      }
+    }
   }
 }

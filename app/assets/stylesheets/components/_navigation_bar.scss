@@ -127,8 +127,11 @@ header.navigation {
       width: auto;
     }
 
+    font-weight: 800;
+    color: $navigation-color;
+
     a {
-      font-weight: 800;
+
       display: inline-block;
       color: $navigation-color;
 

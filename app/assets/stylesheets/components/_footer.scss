@@ -5,7 +5,8 @@
   $footer-disclaimer-color: transparentize($footer-color, .6);
 
   background: $footer-background;
-  padding: $base-line-height;
+  @include pad( $base-line-height );
+  padding-bottom: 1em;
   width: 100%;
 
   position: absolute;
