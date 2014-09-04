@@ -16,7 +16,6 @@
 //= require select2
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/dataTables.tableTools
-//= require dataTables/extras/ZeroClipboard
 //= require jquery.raty
 
 //= require handlebars.runtime
