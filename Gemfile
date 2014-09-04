@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.1.2'
-gem 'rails', '4.0.7'
+gem 'rails', '4.1.5'
 
 gem 'sass-rails',   '~> 4.0.1'
 gem 'coffee-rails', '~> 4.0.1'
@@ -46,6 +46,9 @@ gem 'jquery-datatables-rails'
 
 # Decorated objects
 gem 'draper'
+
+# Captcha for contact form
+gem "recaptcha", :require => "recaptcha/rails"
 
 group :development do
   gem 'better_errors'
