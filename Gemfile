@@ -48,7 +48,10 @@ gem 'jquery-datatables-rails'
 gem 'draper'
 
 # Captcha for contact form
-gem "recaptcha", :require => "recaptcha/rails"
+gem "recaptcha", :require => "recaptcha/rails", github: 'ambethia/recaptcha'
+
+# Font awesome for the responsive recaptcha layout
+gem 'font-awesome-sass'
 
 group :development do
   gem 'better_errors'

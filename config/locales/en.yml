@@ -77,3 +77,18 @@ en:
     privacy: "Privacy Policy"
     contribute: "Contribute to development on GitHub"
     delete_prompt: "Are you sure?"
+
+  recaptcha:
+    errors:
+      incorrect-captcha-sol: 'The captcha answer you provided is incorrect. Please try again.'
+    hints:
+      image: 'Enter the words above:'
+      audio: 'Enter the numbers you hear:'
+      refresh: 'Get another CAPTCHA'
+      switch_image: 'Get an image CAPTCHA'
+      switch_audio: 'Get an audio CAPTCHA'
+      help: 'Help'
+
+  contact:
+    hint: 'Please provide an email address if you would like a response from the site administrators.'
+    response_sent: 'Your message has been sent to the site administrators.'

@@ -21,6 +21,8 @@
 // Plugins
 @import "select2";
 @import "dataTables/extras/dataTables.tableTools";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 // Components
 
@@ -38,6 +40,8 @@
 @import "components/view_resource";
 @import "components/authform";
 @import "components/comments";
+@import "components/contact_form";
+@import "components/recaptcha";
 
 .sr-only {
   position: absolute;

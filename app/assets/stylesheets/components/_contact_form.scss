@@ -1,0 +1,20 @@
+.contact {
+  .body {
+    @include span-columns(12);
+    @include omega();
+  }
+  .captcha {
+    @include span-columns(12);
+    @include omega();
+
+    // @include media($tablet) {
+    //   @include span-columns(12);
+    //   @include omega();
+    // }
+  }
+  .actions {
+    @include pad(default 0 0 0);
+    @include span-columns(12);
+    @include omega();
+  }
+}

@@ -29,6 +29,7 @@ Transources::Application.routes.draw do
 
   get 'about', to: 'home#about'
   get 'contact', to: 'home#contact'
+  post 'contact', to: 'home#contact_submit'
   get 'privacy', to: 'home#privacy'
   get 'terms', to: 'home#terms'
 

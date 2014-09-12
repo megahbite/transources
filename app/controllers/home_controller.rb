@@ -14,6 +14,16 @@ class HomeController < ApplicationController
     render
   end
 
+  def contact_submit
+    if verify_recaptcha
+      # Send the contents to admins
+      ContactMailer.contact(params[:body]).deliver
+      redirect_to contact_path, notice: t('contact.response_sent')
+    else
+      redirect_to contact_path
+    end
+  end
+
   def privacy
     render
   end

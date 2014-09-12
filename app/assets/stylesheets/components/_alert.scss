@@ -20,6 +20,10 @@
       @extend %flash-alert;
     }
 
+    &.alert-recaptcha_error {
+      @extend %flash-alert;
+    }
+
     .close {
       //float: left;
       margin-left: 1em;

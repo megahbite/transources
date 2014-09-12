@@ -83,5 +83,7 @@ module Transources
     config.assets.precompile += %w(resources.js search_form.js comments.js home.js)
 
     config.i18n.enforce_available_locales = false
+
+    config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
   end
 end

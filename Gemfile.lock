@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/ambethia/recaptcha.git
+  revision: 3ac51aa6337bfcec86fb5069aca168843896e11f
+  specs:
+    recaptcha (0.3.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -106,6 +112,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
+    font-awesome-sass (4.2.0)
+      sass (~> 3.2)
     haml (4.1.0.beta.1)
       tilt
     haml-rails (0.5.3)
@@ -191,7 +199,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
     rakismet (1.5.0)
-    recaptcha (0.3.6)
     request_store (1.0.8)
     rgeo (0.3.20)
     rgeo-activerecord (1.2.0)
@@ -287,6 +294,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   faker
+  font-awesome-sass
   haml-rails
   handlebars_assets
   hirb
@@ -304,7 +312,7 @@ DEPENDENCIES
   rails (= 4.1.5)
   rake
   rakismet
-  recaptcha
+  recaptcha!
   rolify (~> 3.4.0)
   rspec-rails
   sass-rails (~> 4.0.1)
