@@ -4,6 +4,8 @@ class HomeController < ApplicationController
     .includes(:taggings)
     .where(taggings: { context: 'categories' })
     .distinct
+
+    render layout: 'index'
   end
 
   def about

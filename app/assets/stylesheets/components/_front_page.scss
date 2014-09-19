@@ -1,38 +1,51 @@
-.hero-container {
-  @include span-columns(12);
-  @include omega();
-}
+.index-container {
+  @include outer-container;
 
-.choice-container {
-  @include span-columns(12);
-  @include omega();
+  padding-bottom: $footer-vertical-height;
 
-  %choice-column {
-    @include span-columns(6);
-    text-align: center;
-    margin-top: $gutter;
+  width: 100%;
+  max-width: none;
 
-    .button {
-      margin-bottom: 30px;
-    }
+  @include media($large-screen) {
+    padding-bottom: $footer-height;
   }
 
-  .left-column {
-    @extend %choice-column;
+  .hero-container {
+    @include span-columns(12);
+    @include omega();
   }
 
-  .right-column {
-    @extend %choice-column;
+  .choice-container {
+    @include span-columns(12);
+    @include omega();
 
-    .button {
-      background-color: $secondary-color-very-light;
-      &:hover {
-        background-color: darken($secondary-color-very-light, 15);
+    %choice-column {
+      @include span-columns(6);
+      text-align: center;
+      margin-top: $gutter;
+
+      .button {
+        margin-bottom: 30px;
       }
     }
-  }
 
-  h3 {
-    @include pad( 30px default );
+    .left-column {
+      @extend %choice-column;
+    }
+
+    .right-column {
+      @extend %choice-column;
+
+      .button {
+        background-color: $secondary-color-very-light;
+        &:hover {
+          background-color: darken($secondary-color-very-light, 15);
+        }
+      }
+    }
+
+    h3 {
+      @include pad( 30px default );
+    }
   }
 }

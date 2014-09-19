@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %title= content_for?(:title) ? yield(:title) : "Transources"
+    %meta{:content => content_for?(:description) ? yield(:description) : "Transources", :name => "description"}
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = javascript_include_tag controller_name if asset_path(controller_name) and Rails.application.assets.find_asset(controller_name)
+    = csrf_meta_tags
+    = yield(:head)
+  %body{:class => "#{controller_name} #{action_name}"}
+    .page-container
+      = render 'layouts/navigation_bar'
+      .alert-container
+        = render 'layouts/messages'
+      .index-container
+        = yield
+      = render 'layouts/footer'
