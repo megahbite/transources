@@ -22,7 +22,7 @@ $(->
 
       radius = $('#radius').val()
 
-      params = "lat=#{location.lat()}&lng=#{location.lng()}&radius=#{radius}"
+      params = "location=#{encodeURIComponent(address)}&lat=#{location.lat()}&lng=#{location.lng()}&radius=#{radius}"
 
       categories = $('#categories').val()
       if categories

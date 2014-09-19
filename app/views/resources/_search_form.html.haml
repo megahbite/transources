@@ -9,15 +9,15 @@
       %p= t('resources.search_prompt')
       .categories
         = label_tag 'categories', t('resources.categories'), class: 'sr-only'
-        = select_tag 'categories', options_from_collection_for_select(categories, "name", "name"), multiple: true, style: "display: block;"
+        = select_tag 'categories', options_from_collection_for_select(categories, "name", "name", params[:categories]), multiple: true, style: "display: block;"
       .location.input-group
         = label_tag 'location', t('resources.location.description'), class: 'sr-only'
         %span.prefix= t('resources.location.prepend')
-        = text_field_tag 'location', nil, class: "js-location-autocomplete"
+        = text_field_tag 'location', params[:location], class: "js-location-autocomplete"
       .radius.input-group
         = label_tag 'radius', t('resources.radius.description'), class: 'sr-only'
         %span.prefix= t('resources.radius.prepend')
-        = number_field_tag 'radius', 20, min: 1
+        = number_field_tag 'radius', params[:radius], min: 1
         %span.suffix= t('resources.radius.append')
       .action
         = button_tag "Search", class: "js-location-search", type: "button"
