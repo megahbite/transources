@@ -1,20 +1,20 @@
 .resource-container {
   .left-column {
-    @include span-columns(6);
+    // @include span-columns(6);
 
-    @include media($mobile) {
+    // @include media($mobile) {
       @include span-columns(12);
       @include omega();
-    }
+    // }
   }
 
   .right-column {
-    @include span-columns(6);
+    // @include span-columns(6);
 
-    @include media($mobile) {
+    // @include media($mobile) {
       @include span-columns(12);
       @include omega();
-    }
+    // }
   }
 
   .map {

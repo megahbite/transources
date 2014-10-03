@@ -18,15 +18,15 @@
                   = t('common.anonymous')
                 &middot;
                 = c.created_at
-            - if policy(c).destroy?
+            - if user_signed_in? && policy(c).destroy?
               .actions
                 = link_to t('common.actions.delete'), resource_comment_path(@resource, c), method: :delete, data: { confirm: t('common.delete_prompt') }
+  - if user_signed_in? && policy(Comment).create?
+    = simple_form_for([@resource, Comment.new()]) do |f|
+      = f.error_notification
 
-  = simple_form_for([@resource, Comment.new()]) do |f|
-    = f.error_notification
-
-    = f.input_field :text, style: "width: 100%;", rows: 5
-    %label
-      = f.check_box :anonymous
-      = t('comments.anonymous_prompt')
-    = f.button :submit
+      = f.input_field :text, style: "width: 100%;", rows: 5
+      %label
+        = f.check_box :anonymous
+        = t('comments.anonymous_prompt')
+      = f.button :submit

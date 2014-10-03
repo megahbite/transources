@@ -1,6 +1,6 @@
 .static-page {
-  @include shift(3);
-  @include span-columns(6);
+  @include shift(2);
+  @include span-columns(8);
 
   @include media($tablet) {
     @include shift(0);
@@ -9,5 +9,13 @@
 
   ul {
     @extend %default-ul;
+  }
+
+  ol {
+    @extend %default-ol
+  }
+
+  .list-heading {
+    margin-top: 1em;
   }
 }
