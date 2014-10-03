@@ -61,7 +61,7 @@ Transources::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'transources.megan.geek.nz' }
+  config.action_mailer.default_url_options = { :host => 'transhealth.directory' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
@@ -72,7 +72,7 @@ Transources::Application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.sendgrid.net",
     port: 25,
-    domain: "megan.geek.nz",
+    domain: "transhealth.directory",
     authentication: "plain",
     user_name: ENV["SENDGRID_USERNAME"],
     password: ENV["SENDGRID_PASSWORD"]
