@@ -1,0 +1,13 @@
+.static-page {
+  @include shift(3);
+  @include span-columns(6);
+
+  @include media($tablet) {
+    @include shift(0);
+    @include span-columns(12);
+  }
+
+  ul {
+    @extend %default-ul;
+  }
+}

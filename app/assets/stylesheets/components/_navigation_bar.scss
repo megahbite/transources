@@ -152,6 +152,7 @@ header.navigation {
 
   li.more {
     padding-right: 0;
+    cursor: pointer;
 
     &:hover .submenu {
       display: block;
