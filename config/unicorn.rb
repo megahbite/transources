@@ -7,8 +7,8 @@ timeout 30
 
 working_directory '/home/deploy/transhealthdirectory/current'
 
-pid '/home/deploy/transhealthdirectory/shared/pids/unicorn.pid'
-listen "/home/deploy/transhealthdirectory/tmp/sockets/transhealthdirectory.sock", :backlog => 2048
+pid '/home/deploy/transhealthdirectory/shared/tmp/pids/unicorn.pid'
+listen "/home/deploy/transhealthdirectory/shared/tmp/sockets/transhealthdirectory.sock", :backlog => 2048
 
 stderr_path '/home/deploy/transhealthdirectory/shared/log/unicorn.log'
 stdout_path '/home/deploy/transhealthdirectory/shared/log/unicorn.log'
@@ -29,7 +29,7 @@ before_fork do |server, worker|
   #
   # Using this method we get 0 downtime deploys.
 
-  old_pid = '/home/deploy/transhealthdirectory/shared/pids/unicorn.pid.oldbin'
+  old_pid = '/home/deploy/transhealthdirectory/shared/tmp/pids/unicorn.pid.oldbin'
 
   if File.exists?(old_pid) && server.pid != old_pid
     begin
