@@ -53,6 +53,8 @@ gem "recaptcha", :require => "recaptcha/rails", github: 'ambethia/recaptcha'
 # Font awesome for the responsive recaptcha layout
 gem 'font-awesome-sass'
 
+gem 'unicorn'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
