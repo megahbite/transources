@@ -6,7 +6,7 @@ en:
     description: "Resources"
     new: "New resource"
     edit: "Editing resource"
-    search_prompt: "I want to find a"
+    search_prompt: "I want to find"
     categories: "Categories"
     manage: "Manage resources"
     location:
@@ -23,6 +23,8 @@ en:
       description: "Description"
       address: "Address"
       tags: "Tags"
+      phone_number: "Phone Number"
+      website: "Website"
 
   sessions:
     login: "Login"
@@ -68,6 +70,7 @@ en:
       unban_ip: "Unban IP"
     anonymous: "Anonymous"
     rate: "Rate"
+    your_rating: "Your Rating"
     hero-title: "Crowdsourced Information for the Trans Community"
     hero-content: "Need help finding local trans friendly resources or want to
     contribute ones you have discovered? This is the site for you."

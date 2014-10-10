@@ -10,5 +10,6 @@ FactoryGirl.define do
     country { Faker::Address.country }
     lat (-41.280562)
     long 174.7749028
+    website { Faker::Internet.url }
   end
 end

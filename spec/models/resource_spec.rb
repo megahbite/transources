@@ -17,5 +17,23 @@ describe Resource do
     it "should validate presence of :country" do
       expect(subject).to validate_presence_of :country
     end
+
+    context "website" do
+      let(:resource) { FactoryGirl.create(:resource) }
+      it "is invalid with a non-URI" do
+        resource.website = "I'm a little teapot"
+        expect(resource).to_not be_valid
+      end
+
+      it "is invalid with a javascript URI" do
+        resource.website = "javascript:alert('XSS attack')"
+        expect(resource).to_not be_valid
+      end
+
+      it "is valid with a URL" do
+        resource.website = "http://google.com"
+        expect(resource).to be_valid
+      end
+    end
   end
 end
