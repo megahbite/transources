@@ -173,7 +173,7 @@ header.navigation {
 
     @include media($horizontal-bar-mode) {
       position: absolute;
-      top: 1em;
+      top: 1.3em;
       left: -$navigation-submenu-padding;
     }
 

@@ -8,9 +8,13 @@
   .left-column
     = f.input :title
     = f.input :description, input_html: { rows: 5, cols: 40 }
-    = f.input :website
     = f.input :category_list
   .right-column
+    .left-column
+      = f.input :website
+    .right-column
+      = f.input :phone_number
+
     = f.input :address_line_1
     = f.input :address_line_2
     = f.input :town
