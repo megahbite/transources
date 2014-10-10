@@ -9,6 +9,8 @@
     %meta{content: "#{request.base_url}#{request.path}", property: "og:url"}
     %meta{content: "Trans Health Directory", property: "og:site_name"}
 
+    %link{href: 'http://fonts.googleapis.com/css?family=Roboto:400,700', rel: 'stylesheet', type: 'text/css'}
+
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = javascript_include_tag controller_name if asset_path(controller_name) and Rails.application.assets.find_asset(controller_name)
