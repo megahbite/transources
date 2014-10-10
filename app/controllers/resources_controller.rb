@@ -140,7 +140,7 @@ class ResourcesController < ApplicationController
 private
 
   def resource_params
-    params.require(:resource).permit(:title, :description, :address_line_1, :address_line_2, :town, :country, :lat, :long, :category_list)
+    params.require(:resource).permit(:title, :description, :website, :address_line_1, :address_line_2, :town, :country, :lat, :long, :category_list)
   end
 
 
