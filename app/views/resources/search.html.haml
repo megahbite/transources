@@ -1,3 +1,6 @@
+= content_for :title, "Search resources"
+= content_for :description, "Find trans friendly resources on Trans Health Directory"
+
 = javascript_include_tag "search_form"
 
 = render partial: "resources/search_form", locals: {categories: @categories}

@@ -1,3 +1,6 @@
+= content_for :title, "Edit #{@resource.title}"
+= content_for :description, @resource.description
+
 %h1= t('resources.edit')
 
 = render 'form'

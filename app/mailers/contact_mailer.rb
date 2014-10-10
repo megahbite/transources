@@ -1,5 +1,5 @@
 class ContactMailer < ActionMailer::Base
-  default from: "admin@megan.geek.nz"
+  default from: "admin@transhealth.directory"
   default subject: "Contact from transources"
 
   def contact(body)
