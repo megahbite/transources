@@ -9,6 +9,7 @@
     %meta{content: "#{request.base_url}#{request.path}", property: "og:url"}
     %meta{content: "Trans Health Directory", property: "og:site_name"}
     %meta{content: image_url('logo-huge.png'), property: "og:image"}
+    %meta{content: ENV['FACEBOOK_APP_ID'], property: "fb:app_id"}
 
     %link{href: '//fonts.googleapis.com/css?family=Roboto:400,700', rel: 'stylesheet', type: 'text/css'}
 
