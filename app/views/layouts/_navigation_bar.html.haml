@@ -16,6 +16,8 @@
 
           %ul.submenu
             %li
+              = link_to t('common.all_resources'), resources_path
+            %li
               = link_to t('common.actions.search'), search_resources_path
             %li
               = link_to t('common.actions.new'), new_resource_path

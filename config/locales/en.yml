@@ -80,6 +80,7 @@ en:
     privacy: "Privacy Policy"
     contribute: "Contribute to development on GitHub"
     delete_prompt: "Are you sure?"
+    all_resources: "All Resources"
 
   recaptcha:
     errors:
