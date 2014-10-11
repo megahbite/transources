@@ -38,10 +38,6 @@ $(->
   showAlert = (message) ->
     $('.js-alert').html(HandlebarsTemplates['resources/alert']({ message: message }))
 
-  showInfoWindow = (map, marker, infoWindow) ->
-    ->
-      infoWindow.open(map, marker)
-
   CalculateScore = (resource) ->
     m = 3
     c = 5
@@ -51,21 +47,6 @@ $(->
     , 0)
 
     ((c * m) + sum) / (c + n)
-
-  showMarkersCallback = (mapObj) ->
-    (data) ->
-      for r in data
-        w = new google.maps.InfoWindow(
-          content: HandlebarsTemplates['resources/info_window'](r)
-        )
-
-        m = new google.maps.Marker(
-          map: mapObj
-          position: new google.maps.LatLng(r.lat, r.long)
-          title: r.title
-        )
-
-        google.maps.event.addListener(m, 'click', showInfoWindow(mapObj, m, w))
 
   if $(".js-results-map").length > 0
     for map in $('.js-results-map')

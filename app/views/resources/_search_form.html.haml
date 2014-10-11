@@ -24,7 +24,7 @@
   - if @resources.present?
     .results-container
       .map-container
-        .js-results-map.results-map{data: {lat: params[:lat], lng: params[:lng], radius: params[:radius]}}
+        .js-results-map.results-map.google-map{data: {lat: params[:lat], lng: params[:lng], radius: params[:radius]}}
       .results-list-container
         - @resources.each do |r|
           .result

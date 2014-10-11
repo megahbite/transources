@@ -81,10 +81,6 @@
         @include media($mobile) {
           height: 200px;
         }
-
-        img {
-          max-width: none; //Fix for display bug with "max-width: 100%" in GMaps
-        }
       }
     }
 

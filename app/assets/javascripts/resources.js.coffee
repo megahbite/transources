@@ -47,24 +47,35 @@ $(->
 
   # Show Resource
 
-  $('.map').each (i, e) ->
+  $('.js-map').each (i, e) ->
     latLng = new google.maps.LatLng($(e).data('lat'), $(e).data('long'))
 
-    mapOptions = {
-      center: latLng,
-      zoom: 16,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapOptions =
+      center: latLng
+      zoom: 16
+      mapTypeId: google.maps.MapTypeId.ROADMAP
       streetViewControl: false
-    }
 
     map = new google.maps.Map(e, mapOptions)
 
-    markerOptions = {
-      map: map,
+    markerOptions =
+      map: map
       position: latLng
-    }
 
     marker = new google.maps.Marker(markerOptions)
+
+  # Show All Resources
+
+  $('.js-map-all').each (i, e) ->
+    mapOptions = 
+      center: new google.maps.LatLng(0, 0)
+      zoom: 1
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+      streetViewControl: false
+
+    map = new google.maps.Map(e, mapOptions)
+
+    $.getJSON "/resources", showMarkersCallback(map)
 
   # Manage Resource
 

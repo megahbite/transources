@@ -30,4 +30,29 @@ $(function() {
     placeholder: "Choose",
     allowClear: true
   });
+
+  window.showInfoWindow = function(map, marker, infoWindow) {
+    return function() {
+      infoWindow.open(map, marker);
+    }
+  }
+
+  window.showMarkersCallback = function(mapObj) {
+    return function(data){
+      for (i in data) {
+        var r = data[i];
+        var w = new google.maps.InfoWindow({
+          content: HandlebarsTemplates['resources/info_window'](r)
+        });
+
+        var m = new google.maps.Marker({
+          map: mapObj,
+          position: new google.maps.LatLng(r.lat, r.long),
+          title: r.title
+        });
+
+        google.maps.event.addListener(m, 'click', showInfoWindow(mapObj, m, w))
+      }
+    }
+  }
 });
