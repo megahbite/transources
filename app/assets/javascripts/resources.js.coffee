@@ -74,8 +74,8 @@ $(->
       streetViewControl: false
 
     map = new google.maps.Map(e, mapOptions)
-
-    $.getJSON "/resources", showMarkersCallback(map)
+    mc = new MarkerClusterer(map);
+    $.getJSON "/resources", showMarkersCallback(map, mc)
 
   # Manage Resource
 

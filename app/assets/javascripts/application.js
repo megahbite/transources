@@ -17,6 +17,7 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/dataTables.tableTools
 //= require jquery.raty
+//= require markerclusterer
 
 //= require handlebars.runtime
 //= require_tree ./templates
@@ -37,8 +38,9 @@ $(function() {
     }
   }
 
-  window.showMarkersCallback = function(mapObj) {
+  window.showMarkersCallback = function(mapObj, mc) {
     return function(data){
+      var markers = [];
       for (i in data) {
         var r = data[i];
         var w = new google.maps.InfoWindow({
@@ -46,13 +48,16 @@ $(function() {
         });
 
         var m = new google.maps.Marker({
-          map: mapObj,
+          //map: mapObj,
           position: new google.maps.LatLng(r.lat, r.long),
           title: r.title
         });
 
+        markers.push(m);
+
         google.maps.event.addListener(m, 'click', showInfoWindow(mapObj, m, w))
       }
+      mc.addMarkers(markers);
     }
   }
 });

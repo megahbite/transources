@@ -71,6 +71,6 @@ $(->
         radius: Math.floor(Number($(map).data('radius')) * 1000)
 
       circle = new google.maps.Circle(circleOptions)
-
-      $.getJSON "/resources/search", window.location.search.slice(1), showMarkersCallback(mapObj)
+      mc = new MarkerClusterer(mapObj);
+      $.getJSON "/resources/search", window.location.search.slice(1), showMarkersCallback(mapObj, mc)
 )
