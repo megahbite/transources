@@ -318,6 +318,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   neat
+  nokogiri
   pg
   premailer-rails
   pry-byebug

@@ -55,6 +55,7 @@ gem 'font-awesome-sass'
 
 gem 'unicorn'
 
+gem 'nokogiri'
 gem 'premailer-rails'
 
 group :development do
