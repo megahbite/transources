@@ -8,7 +8,7 @@ $recaptcha-icons-shadow: 0 1px 1px black !default;
 
 // reCAPTCHA container
 .recaptcha_widget {
-  @include box-sizing('border-box');
+  box-sizing: border-box;
   max-width: 300px;
   border: 4px solid $recaptcha-base-color;
   border-radius: $recaptcha-border-radius;
@@ -22,7 +22,7 @@ $recaptcha-icons-shadow: 0 1px 1px black !default;
   height: auto !important;
 
   img {
-    @include box-sizing('border-box');
+    box-sizing: border-box;
     width: 100%;
     height: auto;
     border-radius: $recaptcha-border-radius-inner;
@@ -39,7 +39,7 @@ $recaptcha-icons-shadow: 0 1px 1px black !default;
   }
 
   #recaptcha_image {
-    @include box-sizing('border-box');
+    box-sizing: border-box;
     width: 100%;
     height: 60px;
     background: #FFF;
@@ -68,7 +68,7 @@ $recaptcha-icons-shadow: 0 1px 1px black !default;
 
   label {
     margin: 0 0 6px;
-    @include box-sizing('border-box');
+    box-sizing: border-box;
   }
 
   input {

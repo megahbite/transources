@@ -9,7 +9,7 @@ Transources::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -71,8 +71,8 @@ Transources::Application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
-    port: 25,
+    address: "localhost",
+    port: 587,
     domain: "transhealth.directory",
     authentication: "plain",
     user_name: ENV["SENDGRID_USERNAME"],

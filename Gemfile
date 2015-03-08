@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
-gem 'rails', '4.1.5'
+ruby '2.2.1'
+gem 'rails', '4.1.9'
 
-gem 'sass-rails',   '~> 4.0.1'
-gem 'coffee-rails', '~> 4.0.1'
-gem 'uglifier', '>= 1.0.3'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
 
 gem 'jquery-rails'
 gem 'underscore-rails'
@@ -18,7 +18,7 @@ gem 'pundit'
 gem 'devise'
 gem 'haml-rails'
 gem 'pg'
-gem 'rolify', "~> 3.4.0"
+gem 'rolify'
 gem 'sendgrid'
 gem 'simple_form'
 gem 'country_select'
@@ -60,7 +60,7 @@ gem 'premailer-rails'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
+  gem 'binding_of_caller'
   gem 'html2haml'
   gem 'quiet_assets'
   gem 'awesome_print'
@@ -73,10 +73,9 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
 
-  gem "debugger", :platforms => [:mingw_19, :ruby_19]
-  gem 'byebug', :platforms => [:mingw_20, :ruby_20, :ruby_21]
-  gem 'pry-byebug', :platforms => [:mingw_20, :ruby_20, :ruby_21]
-  gem 'pry-stack_explorer', :platforms => [:mingw_20, :ruby_20, :ruby_21]
+  gem 'byebug'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
 end
 group :test do
   gem 'capybara'
