@@ -3,9 +3,11 @@ Transources
 
 [![Build Status](https://www.codeship.io/projects/3af50410-becf-0131-c81b-7a3cea88b075/status?branch=master)](https://www.codeship.io/projects/21332)
 
-Transources is a site for crowd sourcing trans* related resources like health services and friendly hair removal clinics.
+~~Transources is a site for crowd sourcing trans* related resources like health services and friendly hair removal clinics.~~
 
-It allows anonymous reviews and comments on resources to protect the privacy of the site's users.
+~~It allows anonymous reviews and comments on resources to protect the privacy of the site's users.~~
+
+Check out [MyTransHealth](http://mytranshealth.com) instead.
 
 License
 -------
